@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  Desarrollo Android · Desarrollo web · Programación y bases de datos
+  Desarrollo Android · Desarrollo web · Aplicaciones y servicios
 </p>
 
 <p align="center">
@@ -27,7 +27,7 @@
 Estudio el **Grado Superior de Desarrollo de Aplicaciones Multiplataforma (DAM)** en el **Institut Baix Camp de Reus**. Me interesa construir aplicaciones útiles, aprender nuevas tecnologías y comprender todo el recorrido de un proyecto: desde la interfaz hasta la lógica y los datos.
 
 - 📱 **Android:** desarrollo de aplicaciones con **Kotlin**, **Jetpack Compose** y diseños en **XML**.
-- 🌐 **Web:** interfaces con **HTML, CSS, JavaScript y TypeScript**, además de **React, Next.js y Tailwind CSS**.
+- 🌐 **Web:** desarrollo con **HTML, CSS, JavaScript, TypeScript, React, Next.js, Tailwind CSS y Node.js**.
 - 🗄️ **Programación y datos:** experiencia académica con **Java, Python, PHP y SQL**.
 - 🤝 **Comunidad:** interés por el trabajo en equipo, los retos de programación y los eventos tecnológicos.
 
@@ -42,16 +42,28 @@ Estudio el **Grado Superior de Desarrollo de Aplicaciones Multiplataforma (DAM)*
 **Frameworks y desarrollo de aplicaciones**
 
 <p>
-  <img src="https://skillicons.dev/icons?i=androidstudio,react,nextjs,tailwind,firebase,gradle&perline=10" alt="Android Studio, React, Next.js, Tailwind CSS, Firebase y Gradle">
+  <img src="https://skillicons.dev/icons?i=androidstudio,react,nextjs,tailwind,nodejs,supabase,firebase,gradle&perline=10" alt="Android Studio, React, Next.js, Tailwind CSS, Node.js, Supabase, Firebase y Gradle">
 </p>
 
-**Bases de datos y herramientas**
+**Datos, pruebas y herramientas de desarrollo**
 
 <p>
-  <img src="https://skillicons.dev/icons?i=mysql,sqlite,git,github,vscode,netlify&perline=10" alt="MySQL, SQLite, Git, GitHub, Visual Studio Code y Netlify">
+  <img src="https://skillicons.dev/icons?i=mysql,sqlite,git,github,vscode,netlify,playwright,storybook&perline=10" alt="MySQL, SQLite, Git, GitHub, Visual Studio Code, Netlify, Playwright y Storybook">
 </p>
 
 También he trabajado con **XML y .NET**. Actualmente combino tecnologías móviles y web en mis proyectos de aprendizaje.
+
+### Tecnologías presentes en proyectos colaborativos
+
+Además de mis proyectos públicos, participo en desarrollos profesionales cuyos entornos incluyen tecnologías como las siguientes:
+
+- **Datos, servicios y formularios:** Supabase, TanStack Query, React Hook Form y Zod.
+- **Interfaces y experiencia de usuario:** Radix UI, Framer Motion y next-intl.
+- **Visualización y geolocalización:** Recharts, FullCalendar, Mapbox GL y MapLibre GL.
+- **Testing y calidad:** Playwright, Storybook, ESLint y Prettier.
+- **Herramientas e integraciones:** Capacitor, Puppeteer, pdf-lib y jsPDF.
+
+*La presencia de estas herramientas en proyectos colaborativos no implica especialización individual en cada una de ellas.*
 
 ## 🚀 Proyectos destacados
 
