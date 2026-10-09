@@ -29,6 +29,7 @@ Estudio el **Grado Superior de Desarrollo de Aplicaciones Multiplataforma (DAM)*
 - 📱 **Android:** desarrollo de aplicaciones con **Kotlin**, **Jetpack Compose** y diseños en **XML**.
 - 🌐 **Web:** desarrollo con **HTML, CSS, JavaScript, TypeScript, React, Next.js, Tailwind CSS y Node.js**.
 - 🗄️ **Programación y datos:** experiencia académica con **Java, Python, PHP y SQL**.
+- 🧩 **ERP:** experiencia académica con **Odoo**, desarrollando módulos propios en **Python** y modificando módulos estándar del ERP para adaptar sus funcionalidades.
 - 🤝 **Comunidad:** interés por el trabajo en equipo, los retos de programación y los eventos tecnológicos.
 
 ## 🛠️ Tecnologías y herramientas
@@ -49,6 +50,13 @@ Estudio el **Grado Superior de Desarrollo de Aplicaciones Multiplataforma (DAM)*
 
 <p>
   <img src="https://skillicons.dev/icons?i=mysql,sqlite,git,github,vscode,netlify,playwright,storybook&perline=10" alt="MySQL, SQLite, Git, GitHub, Visual Studio Code, Netlify, Playwright y Storybook">
+</p>
+
+**ERP y personalización**
+
+<p>
+  <img src="https://img.shields.io/badge/Odoo-714B67?style=for-the-badge&logo=odoo&logoColor=white" alt="Odoo ERP">
+  <img src="https://img.shields.io/badge/M%C3%B3dulos%20Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Desarrollo de módulos con Python">
 </p>
 
 También he trabajado con **XML y .NET**. Actualmente combino tecnologías móviles y web en mis proyectos de aprendizaje.
