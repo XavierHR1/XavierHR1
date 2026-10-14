@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="https://github.com/XavierHR1" title="Español"><img src="https://img.shields.io/badge/Espa%C3%B1ol-1D4ED8?style=for-the-badge" alt="Español"></a>
+  <a href="https://github.com/XavierHR1/XavierHR1/blob/main/README.ca.md" title="Català"><img src="https://img.shields.io/badge/Catal%C3%A0-64748B?style=for-the-badge" alt="Català"></a>
+  <a href="https://github.com/XavierHR1/XavierHR1/blob/main/README.en.md" title="English"><img src="https://img.shields.io/badge/English-64748B?style=for-the-badge" alt="English"></a>
+</p>
+
 <h1 align="center">¡Hola! Soy Xavier Hijós 👋</h1>
 
 <p align="center">
@@ -78,7 +84,7 @@ Además de mis proyectos públicos, participo en desarrollos profesionales cuyos
 | Proyecto | Descripción | Tecnologías |
 | --- | --- | --- |
 | [**Portafoli OpenCode**](https://github.com/XavierHR1/portafolis-opencode) | Portafolio web con explorador, búsqueda y filtros de proyectos. | Next.js · React · TypeScript · Tailwind CSS |
-| [**Portafolio web**](XavierHR1.github.io) | Web personal modular, responsive y sin dependencias de frontend. | HTML · CSS · JavaScript |
+| [**Portafolio web**](https://github.com/XavierHR1/XavierHR1.github.io) | Web personal modular, responsive y sin dependencias de frontend. | HTML · CSS · JavaScript |
 | [**BMI Jetpack Composer**](https://github.com/XavierHR1/BMI-Jetpack-Composer) | Calculadora de índice de masa corporal para Android. | Kotlin · Jetpack Compose |
 | [**Frases de M. Rajoy**](https://github.com/XavierHR1/FrasesdeMRajoy) | Aplicación Android que muestra frases aleatorias al pulsar un botón. | Kotlin · Android · XML |
 | [**DevChallenge2**](https://github.com/XavierHR1/DevChallenge2) | Proyecto académico Android con navegación adaptativa e interfaz Material 3. | Kotlin · Jetpack Compose · Material 3 |
