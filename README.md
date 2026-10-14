@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/XavierHR1/XavierHR1.github.io">
+  <a href="https://XavierHR1.github.io">
     <img src="https://img.shields.io/badge/Portafolio-0F172A?style=for-the-badge&logo=githubpages&logoColor=white" alt="Ver mi portafolio">
   </a>
   <a href="https://www.linkedin.com/in/xhijos/">
@@ -78,7 +78,7 @@ Además de mis proyectos públicos, participo en desarrollos profesionales cuyos
 | Proyecto | Descripción | Tecnologías |
 | --- | --- | --- |
 | [**Portafoli OpenCode**](https://github.com/XavierHR1/portafolis-opencode) | Portafolio web con explorador, búsqueda y filtros de proyectos. | Next.js · React · TypeScript · Tailwind CSS |
-| [**Portafolio web**](https://github.com/XavierHR1/XavierHR1.github.io) | Web personal modular, responsive y sin dependencias de frontend. | HTML · CSS · JavaScript |
+| [**Portafolio web**](XavierHR1.github.io) | Web personal modular, responsive y sin dependencias de frontend. | HTML · CSS · JavaScript |
 | [**BMI Jetpack Composer**](https://github.com/XavierHR1/BMI-Jetpack-Composer) | Calculadora de índice de masa corporal para Android. | Kotlin · Jetpack Compose |
 | [**Frases de M. Rajoy**](https://github.com/XavierHR1/FrasesdeMRajoy) | Aplicación Android que muestra frases aleatorias al pulsar un botón. | Kotlin · Android · XML |
 | [**DevChallenge2**](https://github.com/XavierHR1/DevChallenge2) | Proyecto académico Android con navegación adaptativa e interfaz Material 3. | Kotlin · Jetpack Compose · Material 3 |
