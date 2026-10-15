@@ -1,9 +1,3 @@
-<p align="center">
-  <a href="https://github.com/XavierHR1" title="Español"><img src="https://img.shields.io/badge/Espa%C3%B1ol-1D4ED8?style=for-the-badge" alt="Español"></a>
-  <a href="https://github.com/XavierHR1/XavierHR1/blob/main/README.ca.md" title="Català"><img src="https://img.shields.io/badge/Catal%C3%A0-64748B?style=for-the-badge" alt="Català"></a>
-  <a href="https://github.com/XavierHR1/XavierHR1/blob/main/README.en.md" title="English"><img src="https://img.shields.io/badge/English-64748B?style=for-the-badge" alt="English"></a>
-</p>
-
 <h1 align="center">¡Hola! Soy Xavier Hijós 👋</h1>
 
 <p align="center">
