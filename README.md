@@ -24,7 +24,7 @@
 
 ## 👨‍💻 Sobre mí
 
-Estudio el **Grado Superior de Desarrollo de Aplicaciones Multiplataforma (DAM)** en el **Institut Baix Camp de Reus**. Me interesa construir aplicaciones útiles, aprender nuevas tecnologías y comprender todo el recorrido de un proyecto: desde la interfaz hasta la lógica y los datos.
+Estudio el **Grado Superior de Desarrollo de Aplicaciones Multiplataforma (DAM)**. Me interesa construir aplicaciones útiles, aprender nuevas tecnologías y comprender todo el recorrido de un proyecto: desde la interfaz hasta la lógica y los datos.
 
 - 📱 **Android:** desarrollo de aplicaciones con **Kotlin**, **Jetpack Compose** y diseños en **XML**.
 - 🌐 **Web:** desarrollo con **HTML, CSS, JavaScript, TypeScript, React, Next.js, Tailwind CSS y Node.js**.
