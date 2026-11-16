@@ -5,12 +5,12 @@
 </p>
 
 <p align="center">
-  Desarrollo Android · Desarrollo web · Aplicaciones y servicios
+  Desarrollo Android · Desarrollo web · Aplicaciones en tiempo real
 </p>
 
 <p align="center">
-  <a href="https://XavierHR1.github.io">
-    <img src="https://img.shields.io/badge/Portafolio-0F172A?style=for-the-badge&logo=githubpages&logoColor=white" alt="Ver mi portafolio">
+  <a href="https://xavierhr1.github.io/">
+    <img src="https://img.shields.io/badge/Portafolio-0F172A?style=for-the-badge&logo=githubpages&logoColor=white" alt="Visitar mi portafolio">
   </a>
   <a href="https://www.linkedin.com/in/xhijos/">
     <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="Mi perfil de LinkedIn">
@@ -24,71 +24,76 @@
 
 ## 👨‍💻 Sobre mí
 
-Estudio el **Grado Superior de Desarrollo de Aplicaciones Multiplataforma (DAM)**. Me interesa construir aplicaciones útiles, aprender nuevas tecnologías y comprender todo el recorrido de un proyecto: desde la interfaz hasta la lógica y los datos.
+Soy estudiante del **Grado Superior de Desarrollo de Aplicaciones Multiplataforma (DAM)**. Me interesa crear aplicaciones que combinen una interfaz cuidada, una lógica sólida y una buena gestión de los datos.
 
-- 📱 **Android:** desarrollo de aplicaciones con **Kotlin**, **Jetpack Compose** y diseños en **XML**.
-- 🌐 **Web:** desarrollo con **HTML, CSS, JavaScript, TypeScript, React, Next.js, Tailwind CSS y Node.js**.
-- 🗄️ **Programación y datos:** experiencia académica con **Java, Python, PHP y SQL**.
-- 🧩 **ERP:** experiencia académica con **Odoo**, desarrollando módulos propios en **Python** y modificando módulos estándar del ERP para adaptar sus funcionalidades.
-- 🤝 **Comunidad:** interés por el trabajo en equipo, los retos de programación y los eventos tecnológicos.
+- 📱 **Desarrollo Android:** aplicaciones con **Kotlin**, **Jetpack Compose**, **Material 3**, interfaces XML y servicios de **Firebase**.
+- 🌐 **Desarrollo web:** proyectos con **HTML, CSS, JavaScript, TypeScript, React, Next.js y Tailwind CSS**.
+- 🔄 **Aplicaciones en tiempo real:** proyectos con **Node.js, Express, Socket.IO, Phaser y Vite**, incluyendo lógica de juego, salas multijugador y comunicación cliente-servidor.
+- 🗄️ **Programación y datos:** conocimientos de **Java, Python, PHP, SQL, MySQL y SQLite**.
+- 🧩 **ERP:** experiencia académica con **Odoo**, creando módulos propios en **Python** y adaptando módulos estándar del ERP.
+- 🤝 **Colaboración:** participación en proyectos de desarrollo de software y en iniciativas de la comunidad tecnológica.
 
 ## 🛠️ Tecnologías y herramientas
 
-**Lenguajes**
+**Lenguajes de programación y web**
 
 <p>
   <img src="https://skillicons.dev/icons?i=kotlin,java,python,php,js,ts,html,css,c,cs&perline=10" alt="Kotlin, Java, Python, PHP, JavaScript, TypeScript, HTML, CSS, C y C#">
 </p>
 
-**Frameworks y desarrollo de aplicaciones**
+**Desarrollo de aplicaciones y frameworks**
 
 <p>
-  <img src="https://skillicons.dev/icons?i=androidstudio,react,nextjs,tailwind,nodejs,supabase,firebase,gradle&perline=10" alt="Android Studio, React, Next.js, Tailwind CSS, Node.js, Supabase, Firebase y Gradle">
+  <img src="https://skillicons.dev/icons?i=androidstudio,react,nextjs,tailwind,nodejs,express,vite,firebase,gradle&perline=9" alt="Android Studio, React, Next.js, Tailwind CSS, Node.js, Express, Vite, Firebase y Gradle">
 </p>
 
-**Datos, pruebas y herramientas de desarrollo**
+**Bases de datos, pruebas y herramientas**
 
 <p>
-  <img src="https://skillicons.dev/icons?i=mysql,sqlite,git,github,vscode,netlify,playwright,storybook&perline=10" alt="MySQL, SQLite, Git, GitHub, Visual Studio Code, Netlify, Playwright y Storybook">
+  <img src="https://skillicons.dev/icons?i=mysql,sqlite,supabase,git,github,vscode,playwright,storybook,netlify&perline=9" alt="MySQL, SQLite, Supabase, Git, GitHub, Visual Studio Code, Playwright, Storybook y Netlify">
 </p>
 
-**ERP y personalización**
+**Desarrollo de videojuegos, tiempo real y ERP**
 
 <p>
+  <img src="https://img.shields.io/badge/Phaser-21305B?style=for-the-badge&logoColor=white" alt="Phaser">
+  <img src="https://img.shields.io/badge/Socket.IO-010101?style=for-the-badge&logo=socketdotio&logoColor=white" alt="Socket.IO">
   <img src="https://img.shields.io/badge/Odoo-714B67?style=for-the-badge&logo=odoo&logoColor=white" alt="Odoo ERP">
-  <img src="https://img.shields.io/badge/M%C3%B3dulos%20Python-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Desarrollo de módulos con Python">
+  <img src="https://img.shields.io/badge/Jetpack%20Compose-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white" alt="Jetpack Compose">
 </p>
 
-También he trabajado con **XML y .NET**. Actualmente combino tecnologías móviles y web en mis proyectos de aprendizaje.
+También he trabajado con **XML, .NET** y herramientas de calidad de código como **ESLint, Prettier y Vitest**.
 
-### Tecnologías presentes en proyectos colaborativos
+## 🚀 Proyectos públicos destacados
 
-Además de mis proyectos públicos, participo en desarrollos profesionales cuyos entornos incluyen tecnologías como las siguientes:
-
-- **Datos, servicios y formularios:** Supabase, TanStack Query, React Hook Form y Zod.
-- **Interfaces y experiencia de usuario:** Radix UI, Framer Motion y next-intl.
-- **Visualización y geolocalización:** Recharts, FullCalendar, Mapbox GL y MapLibre GL.
-- **Testing y calidad:** Playwright, Storybook, ESLint y Prettier.
-- **Herramientas e integraciones:** Capacitor, Puppeteer, pdf-lib y jsPDF.
-
-*La presencia de estas herramientas en proyectos colaborativos no implica especialización individual en cada una de ellas.*
-
-## 🚀 Proyectos destacados
-
-| Proyecto | Descripción | Tecnologías |
+| Proyecto | Qué he desarrollado | Tecnologías principales |
 | --- | --- | --- |
-| [**Portafoli OpenCode**](https://github.com/XavierHR1/portafolis-opencode) | Portafolio web con explorador, búsqueda y filtros de proyectos. | Next.js · React · TypeScript · Tailwind CSS |
-| [**Portafolio web**](https://github.com/XavierHR1/XavierHR1.github.io) | Web personal modular, responsive y sin dependencias de frontend. | HTML · CSS · JavaScript |
-| [**BMI Jetpack Composer**](https://github.com/XavierHR1/BMI-Jetpack-Composer) | Calculadora de índice de masa corporal para Android. | Kotlin · Jetpack Compose |
-| [**Frases de M. Rajoy**](https://github.com/XavierHR1/FrasesdeMRajoy) | Aplicación Android que muestra frases aleatorias al pulsar un botón. | Kotlin · Android · XML |
-| [**DevChallenge2**](https://github.com/XavierHR1/DevChallenge2) | Proyecto académico Android con navegación adaptativa e interfaz Material 3. | Kotlin · Jetpack Compose · Material 3 |
+| [**HorseApp**](https://github.com/XavierHR1/HorseApp) | Aplicación Android con un listado de caballos sincronizado en tiempo real mediante Cloud Firestore. | Kotlin · Jetpack Compose · Material 3 · Firebase Firestore |
+| [**Portafoli OpenCode**](https://github.com/XavierHR1/portafolis-opencode) | Portafolio interactivo con búsqueda y filtros para explorar proyectos. | Next.js · React · TypeScript · Tailwind CSS |
+| [**Portafolio web**](https://github.com/XavierHR1/XavierHR1.github.io) | Página personal modular y adaptable a distintos dispositivos, creada sin frameworks de frontend. | HTML · CSS · JavaScript |
+| [**BMI Jetpack Composer**](https://github.com/XavierHR1/BMI-Jetpack-Composer) | Aplicación Android para calcular el índice de masa corporal. | Kotlin · Jetpack Compose |
+| [**Frases de M. Rajoy**](https://github.com/XavierHR1/FrasesdeMRajoy) | Aplicación Android que muestra una frase aleatoria al pulsar un botón. | Kotlin · Android · XML |
+
+## 🔧 Experiencia en proyectos colaborativos y privados
+
+Además de los repositorios públicos, participo en otros desarrollos cuyo código no está disponible públicamente.
+
+- **Aplicaciones multijugador y tiempo real:** desarrollo con **TypeScript, Phaser, Vite, Node.js, Express y Socket.IO**; trabajo con comunicación cliente-servidor, sincronización de estado y pruebas automatizadas.
+- **Aplicaciones web colaborativas:** participación en entornos basados en **React, Next.js, Supabase, TanStack Query, Zod, React Hook Form, Radix UI y Framer Motion**, entre otras herramientas.
+- **Componentes, visualización y calidad:** experiencia en entornos que incorporan **Storybook, Playwright, Recharts, FullCalendar, Mapbox GL y MapLibre GL**.
+
+*Las tecnologías enumeradas reflejan herramientas presentes en proyectos en los que participo; su inclusión no implica especialización individual en todas ellas. No se divulga código ni información interna de repositorios privados.*
+
+## 🧩 Odoo y personalización de ERP
+
+En el ámbito académico he trabajado con **Odoo**, desarrollando **módulos personalizados en Python** y modificando módulos predefinidos del ERP para adaptar su comportamiento a distintos requisitos.
 
 ## 🌍 Comunidad tecnológica
 
-He participado en la organización de la **[Qiskit Hackathon BCN](https://github.com/XavierHR1/Qiskit-Hackathon-BCN)**, un evento dedicado a la computación cuántica, y en otras iniciativas universitarias relacionadas con la ingeniería y la tecnología.
+He participado en la organización de la **[Qiskit Hackathon BCN](https://github.com/XavierHR1/Qiskit-Hackathon-BCN)**, dedicada a la computación cuántica, y en otras iniciativas universitarias relacionadas con la ingeniería y la tecnología.
 
 ---
 
 <p align="center">
-  <strong>Siempre aprendiendo, construyendo y mejorando proyecto a proyecto.</strong>
+  <strong>Aprendiendo, construyendo y mejorando con cada proyecto.</strong>
 </p>
