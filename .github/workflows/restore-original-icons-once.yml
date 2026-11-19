@@ -1,0 +1,89 @@
+name: Restore original icons without changing label typography (one-time)
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/restore-original-icons-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install image inspection library
+        run: python3 -m pip install --disable-pip-version-check pillow
+      - name: Restore exact original icon pixels while preserving updated captions
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageChops
+          from hashlib import sha256
+          
+          folder = Path("assets/tech-icons")
+          names = ("languages", "frameworks", "tools")
+          themes = ("dark", "light")
+          
+          # In the original SVG, icons occupy vertical coordinates 4..56 and
+          # captions start lower, at baseline 74. At 2x PNG scale the cutoff
+          # of 120 separates icon pixels completely from label pixels.
+          cutoff = 120
+          
+          for name in names:
+              with Image.open(folder / f"{name}.png") as im:
+                  original = im.convert("RGBA")
+              width, height = original.size
+              if height != 168 or width not in (1820, 1638):
+                  raise RuntimeError(f"Unexpected source dimensions for {name}: {original.size}")
+              
+              icon_area = original.crop((0, 0, width, cutoff))
+              source_checksum = sha256(icon_area.tobytes()).hexdigest()
+              
+              for theme in themes:
+                  dest = folder / f"{name}-{theme}.png"
+                  with Image.open(dest) as im:
+                      labeled = im.convert("RGBA")
+                  if labeled.size != original.size:
+                      raise RuntimeError(f"Mismatched dimensions for {dest}")
+                  
+                  # No re-rendering of the icons. Copy their exact original
+                  # pixels, preserving their shapes, colors and placement.
+                  labeled.paste(icon_area, (0, 0))
+                  if ImageChops.difference(
+                      icon_area, labeled.crop((0, 0, width, cutoff))
+                  ).getbbox() is not None:
+                      raise RuntimeError(f"Icon changed unexpectedly: {dest}")
+                  
+                  new_checksum = sha256(labeled.crop((0, 0, width, cutoff)).tobytes()).hexdigest()
+                  if new_checksum != source_checksum:
+                      raise RuntimeError(f"Icon region checksum mismatch: {dest}")
+                  
+                  labeled.save(dest, format="PNG", optimize=True)
+                  with Image.open(dest) as verify:
+                      verify.verify()
+                  print(
+                      f"VALIDATED {dest}: icons identical to original "
+                      f"(sha256={new_checksum[:16]}), caption area retained"
+                  )
+          
+          readme = Path("README.md").read_text(encoding="utf-8")
+          for name in names:
+              for theme in themes:
+                  if f"assets/tech-icons/{name}-{theme}.png" not in readme:
+                      raise RuntimeError(f"README reference missing: {name}-{theme}")
+          if not all(word in readme for word in ("FitnessApp", "HorseApp", "Odoo")):
+              raise RuntimeError("Unrelated profile content missing")
+          print("README references unchanged")
+          PY
+      - name: Publish corrected icons and remove temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/tech-icons/languages-dark.png assets/tech-icons/languages-light.png assets/tech-icons/frameworks-dark.png assets/tech-icons/frameworks-light.png assets/tech-icons/tools-dark.png assets/tech-icons/tools-light.png
+          git rm .github/workflows/restore-original-icons-once.yml
+          git diff --cached --stat
+          git commit -m "Restore original icon pixels in theme-aware profile images"
+          git push origin HEAD:main
