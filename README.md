@@ -26,7 +26,7 @@
 
 Soy estudiante del **Grado Superior de Desarrollo de Aplicaciones Multiplataforma (DAM)**. Me interesa crear aplicaciones que combinen una interfaz cuidada, una lógica sólida y una buena gestión de los datos.
 
-- 📱 **Desarrollo Android:** aplicaciones con **Kotlin**, **Jetpack Compose**, **Material 3**, interfaces XML y servicios de **Firebase**.
+- 📱 **Desarrollo Android:** aplicaciones con **Kotlin, Jetpack Compose, Material 3** e interfaces **XML**; integración con **Firebase Firestore**, consumo de APIs mediante **Retrofit y Gson**, carga de imágenes con **Coil** y persistencia local con **SharedPreferences**.
 - 🌐 **Desarrollo web:** proyectos con **HTML, CSS, JavaScript, TypeScript, React, Next.js y Tailwind CSS**.
 - 🔄 **Aplicaciones en tiempo real:** proyectos con **Node.js, Express, Socket.IO, Phaser y Vite**, incluyendo lógica de juego, salas multijugador y comunicación cliente-servidor.
 - 🗄️ **Programación y datos:** conocimientos de **Java, Python, PHP, SQL, MySQL y SQLite**.
@@ -53,6 +53,15 @@ Soy estudiante del **Grado Superior de Desarrollo de Aplicaciones Multiplataform
   <img src="https://skillicons.dev/icons?i=mysql,sqlite,supabase,git,github,vscode,playwright,storybook,netlify&perline=9" alt="MySQL, SQLite, Supabase, Git, GitHub, Visual Studio Code, Playwright, Storybook y Netlify">
 </p>
 
+**Integración Android, pruebas y calidad**
+
+<p>
+  <img src="https://img.shields.io/badge/Retrofit-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Retrofit">
+  <img src="https://img.shields.io/badge/Coil-2563EB?style=for-the-badge" alt="Coil">
+  <img src="https://img.shields.io/badge/Navigation%20Compose-4285F4?style=for-the-badge&logo=android&logoColor=white" alt="Jetpack Navigation Compose">
+  <img src="https://img.shields.io/badge/JUnit-25A162?style=for-the-badge&logo=junit5&logoColor=white" alt="JUnit">
+</p>
+
 **Desarrollo de videojuegos, tiempo real y ERP**
 
 <p>
@@ -62,12 +71,13 @@ Soy estudiante del **Grado Superior de Desarrollo de Aplicaciones Multiplataform
   <img src="https://img.shields.io/badge/Jetpack%20Compose-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white" alt="Jetpack Compose">
 </p>
 
-También he trabajado con **XML, .NET** y herramientas de calidad de código como **ESLint, Prettier y Vitest**.
+También he trabajado con **XML y .NET**, navegación con **Jetpack Navigation Compose**, gestión de estado con **ViewModel** y herramientas de pruebas y calidad como **JUnit, Vitest, Playwright, ESLint y Prettier**.
 
 ## 🚀 Proyectos públicos destacados
 
 | Proyecto | Qué he desarrollado | Tecnologías principales |
 | --- | --- | --- |
+| [**FitnessApp**](https://github.com/XavierHR1/FitnessApp) | Aplicación Android para consultar ejercicios desde una API, registrar el peso, calcular el IMC y gestionar un perfil local. | Kotlin · Jetpack Compose · Retrofit · Coil · SharedPreferences · JUnit |
 | [**HorseApp**](https://github.com/XavierHR1/HorseApp) | Aplicación Android con un listado de caballos sincronizado en tiempo real mediante Cloud Firestore. | Kotlin · Jetpack Compose · Material 3 · Firebase Firestore |
 | [**Portafoli OpenCode**](https://github.com/XavierHR1/portafolis-opencode) | Portafolio interactivo con búsqueda y filtros para explorar proyectos. | Next.js · React · TypeScript · Tailwind CSS |
 | [**Portafolio web**](https://github.com/XavierHR1/XavierHR1.github.io) | Página personal modular y adaptable a distintos dispositivos, creada sin frameworks de frontend. | HTML · CSS · JavaScript |
@@ -78,7 +88,7 @@ También he trabajado con **XML, .NET** y herramientas de calidad de código com
 
 Además de los repositorios públicos, participo en otros desarrollos cuyo código no está disponible públicamente.
 
-- **Aplicaciones multijugador y tiempo real:** desarrollo con **TypeScript, Phaser, Vite, Node.js, Express y Socket.IO**; trabajo con comunicación cliente-servidor, sincronización de estado y pruebas automatizadas.
+- **Aplicaciones multijugador y tiempo real:** desarrollo con **TypeScript, Phaser, Vite, Node.js, Express y Socket.IO**; trabajo con comunicación cliente-servidor, sincronización de estado, persistencia con **SQLite** y pruebas automatizadas con **Vitest**.
 - **Aplicaciones web colaborativas:** participación en entornos basados en **React, Next.js, Supabase, TanStack Query, Zod, React Hook Form, Radix UI y Framer Motion**, entre otras herramientas.
 - **Componentes, visualización y calidad:** experiencia en entornos que incorporan **Storybook, Playwright, Recharts, FullCalendar, Mapbox GL y MapLibre GL**.
 
