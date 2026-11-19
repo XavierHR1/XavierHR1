@@ -38,19 +38,19 @@ Soy estudiante del **Grado Superior de Desarrollo de Aplicaciones Multiplataform
 **Lenguajes de programación y web**
 
 <p align="left">
-  <img src="assets/tech-icons/languages.svg" alt="Iconos y nombres: Kotlin, Java, Python, PHP, JavaScript, TypeScript, HTML, CSS, C y C#" width="910">
+  <img src="assets/tech-icons/languages.png" alt="Iconos y nombres: Kotlin, Java, Python, PHP, JavaScript, TypeScript, HTML, CSS, C y C#" width="910">
 </p>
 
 **Desarrollo de aplicaciones y frameworks**
 
 <p align="left">
-  <img src="assets/tech-icons/frameworks.svg" alt="Iconos y nombres: Android Studio, React, Next.js, Tailwind CSS, Node.js, Express, Vite, Firebase y Gradle" width="819">
+  <img src="assets/tech-icons/frameworks.png" alt="Iconos y nombres: Android Studio, React, Next.js, Tailwind CSS, Node.js, Express, Vite, Firebase y Gradle" width="819">
 </p>
 
 **Bases de datos, pruebas y herramientas**
 
 <p align="left">
-  <img src="assets/tech-icons/tools.svg" alt="Iconos y nombres: MySQL, SQLite, Supabase, Git, GitHub, VS Code, Playwright, Storybook y Netlify" width="819">
+  <img src="assets/tech-icons/tools.png" alt="Iconos y nombres: MySQL, SQLite, Supabase, Git, GitHub, VS Code, Playwright, Storybook y Netlify" width="819">
 </p>
 
 **Integración Android, pruebas y calidad**
