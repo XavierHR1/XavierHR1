@@ -38,19 +38,31 @@ Soy estudiante del **Grado Superior de Desarrollo de Aplicaciones Multiplataform
 **Lenguajes de programación y web**
 
 <p align="left">
-  <img src="assets/tech-icons/languages.png" alt="Iconos y nombres: Kotlin, Java, Python, PHP, JavaScript, TypeScript, HTML, CSS, C y C#" width="910">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/languages-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/languages-light.png">
+    <img src="assets/tech-icons/languages-light.png" alt="Iconos y nombres: Kotlin, Java, Python, PHP, JavaScript, TypeScript, HTML, CSS, C y C#" width="910">
+  </picture>
 </p>
 
 **Desarrollo de aplicaciones y frameworks**
 
 <p align="left">
-  <img src="assets/tech-icons/frameworks.png" alt="Iconos y nombres: Android Studio, React, Next.js, Tailwind CSS, Node.js, Express, Vite, Firebase y Gradle" width="819">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/frameworks-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/frameworks-light.png">
+    <img src="assets/tech-icons/frameworks-light.png" alt="Iconos y nombres: Android Studio, React, Next.js, Tailwind CSS, Node.js, Express, Vite, Firebase y Gradle" width="819">
+  </picture>
 </p>
 
 **Bases de datos, pruebas y herramientas**
 
 <p align="left">
-  <img src="assets/tech-icons/tools.png" alt="Iconos y nombres: MySQL, SQLite, Supabase, Git, GitHub, VS Code, Playwright, Storybook y Netlify" width="819">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/tools-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/tools-light.png">
+    <img src="assets/tech-icons/tools-light.png" alt="Iconos y nombres: MySQL, SQLite, Supabase, Git, GitHub, VS Code, Playwright, Storybook y Netlify" width="819">
+  </picture>
 </p>
 
 **Integración Android, pruebas y calidad**
