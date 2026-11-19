@@ -37,52 +37,21 @@ Soy estudiante del **Grado Superior de Desarrollo de Aplicaciones Multiplataform
 
 **Lenguajes de programación y web**
 
-<table>
-  <tr>
-    <td align="center" width="63"><img src="https://skillicons.dev/icons?i=kotlin" width="42" height="42" alt="Kotlin"><br><sub>Kotlin</sub></td>
-    <td align="center" width="63"><img src="https://skillicons.dev/icons?i=java" width="42" height="42" alt="Java"><br><sub>Java</sub></td>
-    <td align="center" width="63"><img src="https://skillicons.dev/icons?i=python" width="42" height="42" alt="Python"><br><sub>Python</sub></td>
-    <td align="center" width="63"><img src="https://skillicons.dev/icons?i=php" width="42" height="42" alt="PHP"><br><sub>PHP</sub></td>
-    <td align="center" width="63"><img src="https://skillicons.dev/icons?i=js" width="42" height="42" alt="JavaScript"><br><sub>JavaScript</sub></td>
-    <td align="center" width="63"><img src="https://skillicons.dev/icons?i=ts" width="42" height="42" alt="TypeScript"><br><sub>TypeScript</sub></td>
-    <td align="center" width="63"><img src="https://skillicons.dev/icons?i=html" width="42" height="42" alt="HTML"><br><sub>HTML</sub></td>
-    <td align="center" width="63"><img src="https://skillicons.dev/icons?i=css" width="42" height="42" alt="CSS"><br><sub>CSS</sub></td>
-    <td align="center" width="63"><img src="https://skillicons.dev/icons?i=c" width="42" height="42" alt="C"><br><sub>C</sub></td>
-    <td align="center" width="63"><img src="https://skillicons.dev/icons?i=cs" width="42" height="42" alt="C#"><br><sub>C#</sub></td>
-  </tr>
-</table>
+<p align="left">
+  <img src="assets/tech-icons/languages.svg" alt="Iconos y nombres: Kotlin, Java, Python, PHP, JavaScript, TypeScript, HTML, CSS, C y C#" width="910">
+</p>
 
 **Desarrollo de aplicaciones y frameworks**
 
-<table>
-  <tr>
-    <td align="center" width="63"><img src="https://skillicons.dev/icons?i=androidstudio" width="42" height="42" alt="Android Studio"><br><sub>Android Studio</sub></td>
-    <td align="center" width="63"><img src="https://skillicons.dev/icons?i=react" width="42" height="42" alt="React"><br><sub>React</sub></td>
-    <td align="center" width="63"><img src="https://skillicons.dev/icons?i=nextjs" width="42" height="42" alt="Next.js"><br><sub>Next.js</sub></td>
-    <td align="center" width="63"><img src="https://skillicons.dev/icons?i=tailwind" width="42" height="42" alt="Tailwind CSS"><br><sub>Tailwind CSS</sub></td>
-    <td align="center" width="63"><img src="https://skillicons.dev/icons?i=nodejs" width="42" height="42" alt="Node.js"><br><sub>Node.js</sub></td>
-    <td align="center" width="63"><img src="https://skillicons.dev/icons?i=express" width="42" height="42" alt="Express"><br><sub>Express</sub></td>
-    <td align="center" width="63"><img src="https://skillicons.dev/icons?i=vite" width="42" height="42" alt="Vite"><br><sub>Vite</sub></td>
-    <td align="center" width="63"><img src="https://skillicons.dev/icons?i=firebase" width="42" height="42" alt="Firebase"><br><sub>Firebase</sub></td>
-    <td align="center" width="63"><img src="https://skillicons.dev/icons?i=gradle" width="42" height="42" alt="Gradle"><br><sub>Gradle</sub></td>
-  </tr>
-</table>
+<p align="left">
+  <img src="assets/tech-icons/frameworks.svg" alt="Iconos y nombres: Android Studio, React, Next.js, Tailwind CSS, Node.js, Express, Vite, Firebase y Gradle" width="819">
+</p>
 
 **Bases de datos, pruebas y herramientas**
 
-<table>
-  <tr>
-    <td align="center" width="63"><img src="https://skills.syvixor.com/api/icons?i=mysql" width="42" height="42" alt="MySQL"><br><sub>MySQL</sub></td>
-    <td align="center" width="63"><img src="https://skills.syvixor.com/api/icons?i=sqlite" width="42" height="42" alt="SQLite"><br><sub>SQLite</sub></td>
-    <td align="center" width="63"><img src="https://skills.syvixor.com/api/icons?i=supabase" width="42" height="42" alt="Supabase"><br><sub>Supabase</sub></td>
-    <td align="center" width="63"><img src="https://skills.syvixor.com/api/icons?i=git" width="42" height="42" alt="Git"><br><sub>Git</sub></td>
-    <td align="center" width="63"><img src="https://skills.syvixor.com/api/icons?i=github" width="42" height="42" alt="GitHub"><br><sub>GitHub</sub></td>
-    <td align="center" width="63"><img src="https://skills.syvixor.com/api/icons?i=visualstudiocode" width="42" height="42" alt="VS Code"><br><sub>VS Code</sub></td>
-    <td align="center" width="63"><img src="https://skills.syvixor.com/api/icons?i=playwright" width="42" height="42" alt="Playwright"><br><sub>Playwright</sub></td>
-    <td align="center" width="63"><img src="https://skills.syvixor.com/api/icons?i=storybook" width="42" height="42" alt="Storybook"><br><sub>Storybook</sub></td>
-    <td align="center" width="63"><img src="https://skills.syvixor.com/api/icons?i=netlify" width="42" height="42" alt="Netlify"><br><sub>Netlify</sub></td>
-  </tr>
-</table>
+<p align="left">
+  <img src="assets/tech-icons/tools.svg" alt="Iconos y nombres: MySQL, SQLite, Supabase, Git, GitHub, VS Code, Playwright, Storybook y Netlify" width="819">
+</p>
 
 **Integración Android, pruebas y calidad**
 
