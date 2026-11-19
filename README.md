@@ -50,14 +50,12 @@ Soy estudiante del **Grado Superior de Desarrollo de Aplicaciones Multiplataform
 **Bases de datos, pruebas y herramientas**
 
 <p>
-  <img src="https://skillicons.dev/icons?i=mysql,sqlite,supabase,git,github,vscode,netlify&perline=7" alt="MySQL, SQLite, Supabase, Git, GitHub, Visual Studio Code y Netlify">
+  <img src="https://skills.syvixor.com/api/icons?i=mysql,sqlite,supabase,git,github,visualstudiocode,playwright,storybook,netlify&perline=9" alt="MySQL, SQLite, Supabase, Git, GitHub, Visual Studio Code, Playwright, Storybook y Netlify">
 </p>
 
 **Integración Android, pruebas y calidad**
 
 <p>
-  <img src="https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=white" alt="Playwright">
-  <img src="https://img.shields.io/badge/Storybook-FF4785?style=for-the-badge&logo=storybook&logoColor=white" alt="Storybook">
   <img src="https://img.shields.io/badge/Retrofit-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Retrofit">
   <img src="https://img.shields.io/badge/Coil-2563EB?style=for-the-badge" alt="Coil">
   <img src="https://img.shields.io/badge/Navigation%20Compose-4285F4?style=for-the-badge&logo=android&logoColor=white" alt="Jetpack Navigation Compose">
