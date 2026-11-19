@@ -4,6 +4,7 @@ on:
     branches: [main]
     paths:
       - .github/workflows/convert-profile-icons-once.yml
+      - assets/tech-icons/frameworks.svg
 
 permissions:
   contents: write
