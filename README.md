@@ -60,17 +60,17 @@ Soy estudiante del **Grado Superior de Desarrollo de Aplicaciones Multiplataform
 
 <p align="left">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/tools-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/tools-light.png">
-    <img src="assets/tech-icons/tools-light.png" alt="Iconos y nombres: MySQL, SQLite, Supabase, Git, GitHub, VS Code, Playwright, Storybook, Netlify, MongoDB y MariaDB" width="800">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/tools-row11-20261123-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/tools-row11-20261123-light.png">
+    <img src="assets/tech-icons/tools-row11-20261123-light.png" alt="Iconos y nombres: MySQL, SQLite, Supabase, Git, GitHub, VS Code, Playwright, Storybook, Netlify, MongoDB y MariaDB" width="800">
   </picture>
 </p>
 
 <p align="left">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/databases-extra-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/databases-extra-light.png">
-    <img src="assets/tech-icons/databases-extra-light.png" alt="Iconos y nombres: SQL y PL/SQL" width="800">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/databases-row2-20261123-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/databases-row2-20261123-light.png">
+    <img src="assets/tech-icons/databases-row2-20261123-light.png" alt="Iconos y nombres: SQL y PL/SQL" width="800">
   </picture>
 </p>
 
