@@ -40,9 +40,9 @@ Soy estudiante del **Grado Superior de Desarrollo de Aplicaciones Multiplataform
 
 <p align="left">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/languages-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/languages-light.png">
-    <img src="assets/tech-icons/languages-light.png" alt="Iconos y nombres: Kotlin, Java, Python, PHP, JavaScript, TypeScript, HTML, CSS, C, C# y Swift" width="800">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/languages-sorted-20261123-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/languages-sorted-20261123-light.png">
+    <img src="assets/tech-icons/languages-sorted-20261123-light.png" alt="Iconos y nombres: Kotlin, Java, Python, C, C#, Swift, PHP, JavaScript, TypeScript, HTML y CSS" width="800">
   </picture>
 </p>
 
@@ -50,9 +50,9 @@ Soy estudiante del **Grado Superior de Desarrollo de Aplicaciones Multiplataform
 
 <p align="left">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/frameworks-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/frameworks-light.png">
-    <img src="assets/tech-icons/frameworks-light.png" alt="Iconos y nombres: Android Studio, React, Next.js, Tailwind CSS, Node.js, Express, Vite, Firebase, Gradle, SwiftUI y Xcode" width="800">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/frameworks-sorted-20261123-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/frameworks-sorted-20261123-light.png">
+    <img src="assets/tech-icons/frameworks-sorted-20261123-light.png" alt="Iconos y nombres: Android Studio, Xcode, React, Next.js, SwiftUI, Tailwind CSS, Node.js, Express, Vite, Firebase y Gradle" width="800">
   </picture>
 </p>
 
@@ -60,17 +60,17 @@ Soy estudiante del **Grado Superior de Desarrollo de Aplicaciones Multiplataform
 
 <p align="left">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/tools-row11-20261123-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/tools-row11-20261123-light.png">
-    <img src="assets/tech-icons/tools-row11-20261123-light.png" alt="Iconos y nombres: MySQL, SQLite, Supabase, Git, GitHub, VS Code, Playwright, Storybook, Netlify, MongoDB y MariaDB" width="800">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/tools-sorted-20261123-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/tools-sorted-20261123-light.png">
+    <img src="assets/tech-icons/tools-sorted-20261123-light.png" alt="Iconos y nombres: SQL, PL/SQL, Playwright, Storybook, MySQL, SQLite, MongoDB, MariaDB, Supabase, Git y GitHub" width="800">
   </picture>
 </p>
 
 <p align="left">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/databases-row2-20261123-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/databases-row2-20261123-light.png">
-    <img src="assets/tech-icons/databases-row2-20261123-light.png" alt="Iconos y nombres: SQL y PL/SQL" width="800">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/databases-sorted-20261123-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/databases-sorted-20261123-light.png">
+    <img src="assets/tech-icons/databases-sorted-20261123-light.png" alt="Iconos y nombres: VS Code y Netlify" width="800">
   </picture>
 </p>
 
