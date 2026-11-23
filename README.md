@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  Desarrollo Android · Desarrollo web · Aplicaciones en tiempo real
+  Desarrollo Android y Apple · Desarrollo web · Aplicaciones en tiempo real
 </p>
 
 <p align="center">
@@ -27,6 +27,7 @@
 Soy estudiante del **Grado Superior de Desarrollo de Aplicaciones Multiplataforma (DAM)**. Me interesa crear aplicaciones que combinen una interfaz cuidada, una lógica sólida y una buena gestión de los datos.
 
 - 📱 **Desarrollo Android:** aplicaciones con **Kotlin, Jetpack Compose, Material 3** e interfaces **XML**; integración con **Firebase Firestore**, consumo de APIs mediante **Retrofit y Gson**, carga de imágenes con **Coil** y persistencia local con **SharedPreferences**.
+- 🍎 **Desarrollo Apple:** programación con **Swift** y creación de interfaces con **SwiftUI** utilizando **Xcode**.
 - 🌐 **Desarrollo web:** proyectos con **HTML, CSS, JavaScript, TypeScript, React, Next.js y Tailwind CSS**.
 - 🔄 **Aplicaciones en tiempo real:** proyectos con **Node.js, Express, Socket.IO, Phaser y Vite**, incluyendo lógica de juego, salas multijugador y comunicación cliente-servidor.
 - 🗄️ **Programación y datos:** conocimientos de **Java, Python, PHP, SQL, MySQL y SQLite**.
@@ -41,7 +42,7 @@ Soy estudiante del **Grado Superior de Desarrollo de Aplicaciones Multiplataform
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/languages-dark.png">
     <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/languages-light.png">
-    <img src="assets/tech-icons/languages-light.png" alt="Iconos y nombres: Kotlin, Java, Python, PHP, JavaScript, TypeScript, HTML, CSS, C y C#" width="910">
+    <img src="assets/tech-icons/languages-light.png" alt="Iconos y nombres: Kotlin, Java, Python, PHP, JavaScript, TypeScript, HTML, CSS, C, C# y Swift" width="1001">
   </picture>
 </p>
 
@@ -51,7 +52,7 @@ Soy estudiante del **Grado Superior de Desarrollo de Aplicaciones Multiplataform
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/frameworks-dark.png">
     <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/frameworks-light.png">
-    <img src="assets/tech-icons/frameworks-light.png" alt="Iconos y nombres: Android Studio, React, Next.js, Tailwind CSS, Node.js, Express, Vite, Firebase y Gradle" width="819">
+    <img src="assets/tech-icons/frameworks-light.png" alt="Iconos y nombres: Android Studio, React, Next.js, Tailwind CSS, Node.js, Express, Vite, Firebase, Gradle, SwiftUI y Xcode" width="1001">
   </picture>
 </p>
 
