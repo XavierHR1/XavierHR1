@@ -30,7 +30,7 @@ Soy estudiante del **Grado Superior de Desarrollo de Aplicaciones Multiplataform
 - 🍎 **Desarrollo Apple:** programación con **Swift** y creación de interfaces con **SwiftUI** utilizando **Xcode**.
 - 🌐 **Desarrollo web:** proyectos con **HTML, CSS, JavaScript, TypeScript, React, Next.js y Tailwind CSS**.
 - 🔄 **Aplicaciones en tiempo real:** proyectos con **Node.js, Express, Socket.IO, Phaser y Vite**, incluyendo lógica de juego, salas multijugador y comunicación cliente-servidor.
-- 🗄️ **Programación y datos:** conocimientos de **Java, Python, PHP, SQL, MySQL y SQLite**.
+- 🗄️ **Programación y bases de datos:** conocimientos de **Java, Python y PHP**, y experiencia con **SQL, PL/SQL, MySQL, MariaDB, MongoDB y SQLite**.
 - 🧩 **ERP:** experiencia académica con **Odoo**, creando módulos propios en **Python** y adaptando módulos estándar del ERP.
 - 🤝 **Colaboración:** participación en proyectos de desarrollo de software y en iniciativas de la comunidad tecnológica.
 
@@ -63,6 +63,14 @@ Soy estudiante del **Grado Superior de Desarrollo de Aplicaciones Multiplataform
     <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/tools-dark.png">
     <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/tools-light.png">
     <img src="assets/tech-icons/tools-light.png" alt="Iconos y nombres: MySQL, SQLite, Supabase, Git, GitHub, VS Code, Playwright, Storybook y Netlify" width="819">
+  </picture>
+</p>
+
+<p align="left">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/databases-extra-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/databases-extra-light.png">
+    <img src="assets/tech-icons/databases-extra-light.png" alt="Iconos y nombres: SQL, PL/SQL, MongoDB y MariaDB" width="364">
   </picture>
 </p>
 
