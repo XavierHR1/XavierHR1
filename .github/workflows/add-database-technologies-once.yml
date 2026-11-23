@@ -1,0 +1,115 @@
+name: Add SQL PL-SQL MongoDB MariaDB profile icons (one-time)
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/add-database-technologies-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install rasterizing dependencies
+        run: python3 -m pip install --disable-pip-version-check pillow cairosvg
+      - name: Fetch existing style font and requested icons
+        run: |
+          mkdir -p /tmp/db-profile-icons
+          curl --fail --location --silent --show-error \
+            "https://raw.githubusercontent.com/github/mona-sans/main/fonts/static/otf/MonaSans-Regular.otf" \
+            -o /tmp/db-profile-icons/MonaSans-Regular.otf
+          for name in sql oracle mongodb mariadb; do
+            curl --fail --location --silent --show-error \
+              "https://raw.githubusercontent.com/syvixor/skills-icons/main/icons/${name}.svg" \
+              -o "/tmp/db-profile-icons/${name}.svg"
+          done
+          test -s /tmp/db-profile-icons/MonaSans-Regular.otf
+      - name: Create two theme-aware rows, keeping all existing icons intact
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import io
+          import cairosvg
+          from PIL import Image, ImageDraw, ImageFont
+
+          root = Path("assets/tech-icons")
+          downloads = Path("/tmp/db-profile-icons")
+          font = ImageFont.truetype(str(downloads / "MonaSans-Regular.otf"), 24)
+          entries = (("sql", "SQL"), ("oracle", "PL/SQL"), ("mongodb", "MongoDB"), ("mariadb", "MariaDB"))
+          icons = {}
+          for key, title in entries:
+              data = (downloads / f"{key}.svg").read_bytes()
+              png = cairosvg.svg2png(bytestring=data, output_width=104, output_height=104)
+              with Image.open(io.BytesIO(png)) as im:
+                  icon = im.convert("RGBA")
+              if icon.size != (104, 104) or not icon.getbbox():
+                  raise RuntimeError(f"Unable to render {title}")
+              icons[key] = icon
+
+          # Existing icons use 91 CSS px cells and 52 CSS px icons,
+          # rendered at 2x, with Mona Sans labels on the baseline.
+          cell = 182
+          width, height = cell * len(entries), 168
+          for theme, color in (("dark", "#f0f6fc"), ("light", "#1f2328")):
+              image = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+              painter = ImageDraw.Draw(image)
+              for i, (key, label) in enumerate(entries):
+                  x0 = i * cell
+                  image.alpha_composite(icons[key], (x0 + 39, 8))
+                  painter.text((x0 + cell // 2, 148), label, fill=color, font=font, anchor="ms")
+              filename = root / f"databases-extra-{theme}.png"
+              image.save(filename, format="PNG", optimize=True)
+              with Image.open(filename) as check:
+                  check.verify()
+              with Image.open(filename) as check:
+                  sample = check.convert("RGBA").crop((0, 128, width, height)).getdata()
+                  color_bytes = bytes.fromhex(color.lstrip("#"))
+                  if not any(px[:3] == tuple(color_bytes) and px[3] >= 200 for px in sample):
+                      raise RuntimeError(f"Label color does not match: {filename}")
+              print(f"Validated {filename}, {width}x{height}, {filename.stat().st_size} bytes")
+
+          readme_path = Path("README.md")
+          text = readme_path.read_text(encoding="utf-8")
+          old_bio = "- 🗄️ **Programación y datos:** conocimientos de **Java, Python, PHP, SQL, MySQL y SQLite**."
+          new_bio = "- 🗄️ **Programación y bases de datos:** conocimientos de **Java, Python y PHP**, y experiencia con **SQL, PL/SQL, MySQL, MariaDB, MongoDB y SQLite**."
+          if text.count(old_bio) != 1:
+              raise RuntimeError("Database bio section changed unexpectedly")
+          text = text.replace(old_bio, new_bio, 1)
+
+          old_section = '''    <img src="assets/tech-icons/tools-light.png" alt="Iconos y nombres: MySQL, SQLite, Supabase, Git, GitHub, VS Code, Playwright, Storybook y Netlify" width="819">
+  </picture>
+</p>'''
+          added = '''    <img src="assets/tech-icons/tools-light.png" alt="Iconos y nombres: MySQL, SQLite, Supabase, Git, GitHub, VS Code, Playwright, Storybook y Netlify" width="819">
+  </picture>
+</p>
+
+<p align="left">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/databases-extra-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/databases-extra-light.png">
+    <img src="assets/tech-icons/databases-extra-light.png" alt="Iconos y nombres: SQL, PL/SQL, MongoDB y MariaDB" width="364">
+  </picture>
+</p>'''
+          if text.count(old_section) != 1:
+              raise RuntimeError("The existing database icon row changed unexpectedly")
+          text = text.replace(old_section, added, 1)
+          if text.count("<picture>") != 4:
+              raise RuntimeError("Expected four picture elements")
+          for protected in ("FitnessApp", "HorseApp", "Odoo", "SwiftUI", "Qiskit Hackathon"):
+              if protected not in text:
+                  raise RuntimeError(f"Missing pre-existing content: {protected}")
+          readme_path.write_text(text, encoding="utf-8")
+          PY
+      - name: Publish generated images and remove this temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md assets/tech-icons/databases-extra-dark.png assets/tech-icons/databases-extra-light.png
+          git rm .github/workflows/add-database-technologies-once.yml
+          git diff --cached --stat
+          git commit -m "Add SQL PL/SQL MongoDB and MariaDB technology icons"
+          git push origin HEAD:main
