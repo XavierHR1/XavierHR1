@@ -26,9 +26,9 @@
 
 Soy estudiante del **Grado Superior de Desarrollo de Aplicaciones Multiplataforma (DAM)**. Me interesa crear aplicaciones que combinen una interfaz cuidada, una lógica sólida y una buena gestión de los datos.
 
-- 📱 **Desarrollo Android:** aplicaciones con **Kotlin, Jetpack Compose, Material 3** e interfaces **XML**; integración con **Firebase Firestore**, consumo de APIs mediante **Retrofit y Gson**, carga de imágenes con **Coil** y persistencia local con **SharedPreferences**.
+- 📱 **Desarrollo Android:** aplicaciones con **Kotlin, Jetpack Compose, Material 3** e interfaces **XML**; integración con **Firebase Firestore**, consumo de APIs mediante **Retrofit y Gson**, carga de imágenes con **Coil** y persistencia local con **SharedPreferences**. También he trabajado con **Dart y Flutter** para desarrollo multiplataforma.
 - 🍎 **Desarrollo Apple:** programación con **Swift** y creación de interfaces con **SwiftUI** utilizando **Xcode**.
-- 🌐 **Desarrollo web:** proyectos con **HTML, CSS, JavaScript, TypeScript, React, Next.js y Tailwind CSS**.
+- 🌐 **Desarrollo web:** proyectos con **HTML, CSS, JavaScript, TypeScript, React, Next.js, Tailwind CSS y Laravel (PHP)**.
 - 🔄 **Aplicaciones en tiempo real:** proyectos con **Node.js, Express, Socket.IO, Phaser y Vite**, incluyendo lógica de juego, salas multijugador y comunicación cliente-servidor.
 - 🗄️ **Programación y bases de datos:** conocimientos de **Java, Python y PHP**, y experiencia con **SQL, PL/SQL, MySQL, MariaDB, MongoDB y SQLite**.
 - 🧩 **ERP:** experiencia académica con **Odoo**, creando módulos propios en **Python** y adaptando módulos estándar del ERP.
@@ -40,9 +40,9 @@ Soy estudiante del **Grado Superior de Desarrollo de Aplicaciones Multiplataform
 
 <p align="left">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/languages-programming-v3-20261123-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/languages-programming-v3-20261123-light.png">
-    <img src="assets/tech-icons/languages-programming-v3-20261123-light.png" alt="Iconos y nombres: Kotlin, Java, Python, C, C#, Swift, PHP y TypeScript" width="800">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/languages-programming-dart-v4-20261123-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/languages-programming-dart-v4-20261123-light.png">
+    <img src="assets/tech-icons/languages-programming-dart-v4-20261123-light.png" alt="Iconos y nombres: Kotlin, Java, Python, C, C#, Swift, Dart, PHP y TypeScript" width="800">
   </picture>
 </p>
 
@@ -66,9 +66,9 @@ Soy estudiante del **Grado Superior de Desarrollo de Aplicaciones Multiplataform
 
 <p align="left">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/frameworks-v2-20261123-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/frameworks-v2-20261123-light.png">
-    <img src="assets/tech-icons/frameworks-v2-20261123-light.png" alt="Iconos y nombres: React, Next.js, SwiftUI, Tailwind CSS, Node.js, Express, Vite, Firebase y Gradle" width="800">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/frameworks-flutter-laravel-v3-20261123-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/frameworks-flutter-laravel-v3-20261123-light.png">
+    <img src="assets/tech-icons/frameworks-flutter-laravel-v3-20261123-light.png" alt="Iconos y nombres: React, Next.js, SwiftUI, Flutter, Laravel, Tailwind CSS, Node.js, Express, Vite, Firebase y Gradle" width="800">
   </picture>
 </p>
 
