@@ -1,0 +1,120 @@
+name: Fix missing testing and tools icons (one-time)
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/fix-missing-technology-pngs.yml
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Pillow
+        run: python3 -m pip install --disable-pip-version-check pillow
+
+      - name: Split existing icons into testing and other-tools images
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from hashlib import sha256
+          from PIL import Image
+
+          base = Path("assets/tech-icons")
+          cell, width, height = 182, 2002, 168
+          groups = {
+              "testing-v4-20261123": [0, 1],
+              "tools-v4-20261123": [2, 3, 4],
+          }
+
+          for theme in ("dark", "light"):
+              source_path = base / f"tools-v2-20261123-{theme}.png"
+              with Image.open(source_path) as source_file:
+                  source = source_file.convert("RGBA")
+              if source.size != (width, height):
+                  raise RuntimeError(f"Unexpected source image dimensions: {source_path}: {source.size}")
+              if source.crop((5 * cell, 0, width, height)).getbbox() is not None:
+                  raise RuntimeError(f"Unexpected content beyond the 5 source icons: {source_path}")
+
+              for output_name, source_indices in groups.items():
+                  output = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+                  for index, source_index in enumerate(source_indices):
+                      tile = source.crop((
+                          source_index * cell, 0,
+                          (source_index + 1) * cell, height,
+                      ))
+                      if tile.getbbox() is None:
+                          raise RuntimeError(f"Empty source icon at index {source_index}: {source_path}")
+                      output.paste(tile, (index * cell, 0))
+                      copied = output.crop((index * cell, 0, (index + 1) * cell, height))
+                      if sha256(tile.tobytes()).digest() != sha256(copied.tobytes()).digest():
+                          raise RuntimeError(f"Pixel mismatch in {output_name}: {source_index}")
+
+                  if output.crop((len(source_indices) * cell, 0, width, height)).getbbox():
+                      raise RuntimeError(f"Unexpected pixels after {output_name} icons")
+
+                  output_path = base / f"{output_name}-{theme}.png"
+                  output.save(output_path, format="PNG", optimize=True)
+                  with Image.open(output_path) as verify:
+                      verify.verify()
+                  print(f"VERIFIED {output_path}: {len(source_indices)} original icons, 800px display width")
+
+          readme_file = Path("README.md")
+          readme = readme_file.read_text(encoding="utf-8")
+          for old, new in (
+              ("testing-v3-20261123", "testing-v4-20261123"),
+              ("tools-v3-20261123", "tools-v4-20261123"),
+          ):
+              for theme in ("dark", "light"):
+                  old_path = f"assets/tech-icons/{old}-{theme}.png"
+                  new_path = f"assets/tech-icons/{new}-{theme}.png"
+                  expected_count = 2 if theme == "light" else 1
+                  if readme.count(old_path) != expected_count:
+                      raise RuntimeError(f"README reference count unexpected: {old_path}")
+                  readme = readme.replace(old_path, new_path)
+                  if not Path(new_path).is_file():
+                      raise RuntimeError(f"Image is missing: {new_path}")
+          if readme.count('width="800"') != 6:
+              raise RuntimeError("Expected six 800px technology rows")
+          if readme.count("<picture>") != 6:
+              raise RuntimeError("Expected six picture elements")
+          if not all(x in readme for x in (
+              "SQL, PL/SQL, MySQL, SQLite, MongoDB, MariaDB y Supabase",
+              "Playwright y Storybook",
+              "Git, GitHub y Netlify",
+              "FitnessApp", "HorseApp", "SwiftUI",
+          )):
+              raise RuntimeError("A required existing README section is missing")
+          readme_file.write_text(readme, encoding="utf-8")
+          print("VERIFIED all README image references")
+
+          PY
+
+      - name: Commit images, cleanup misplaced workflow, publish
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add README.md
+          git add assets/tech-icons/testing-v4-20261123-{dark,light}.png
+          git add assets/tech-icons/tools-v4-20261123-{dark,light}.png
+
+          # Remove the workflow accidentally placed inside a nested directory.
+          if git ls-files --error-unmatch ".github/workflows/.github/workflows/reorganitzar-tecnologies.yml" >/dev/null 2>&1; then
+            git rm ".github/workflows/.github/workflows/reorganitzar-tecnologies.yml"
+          fi
+
+          # This is a one-time repair, not a permanent workflow.
+          git rm .github/workflows/fix-missing-technology-pngs.yml
+
+          git diff --cached --stat
+          git commit -m "Fix missing README technology PNGs and broken workflow placement"
+          git push origin HEAD:main
