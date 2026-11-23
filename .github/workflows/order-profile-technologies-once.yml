@@ -1,0 +1,167 @@
+name: Order profile technologies by category (one-time)
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/order-profile-technologies-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  reorder:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install image inspection dependency
+        run: python3 -m pip install --disable-pip-version-check pillow
+      - name: Rearrange existing icon-and-label cells without changing their pixels
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from hashlib import sha256
+          from PIL import Image, ImageChops
+
+          folder = Path("assets/tech-icons")
+          cell_width, row_width, row_height = 182, 2002, 168
+          # Each 182 x 168 cell already includes the original icon and its
+          # exact text label, color and font. No fonts or SVGs are regenerated.
+          original_order = {
+              "languages": [
+                  "Kotlin", "Java", "Python", "PHP", "JavaScript", "TypeScript",
+                  "HTML", "CSS", "C", "C#", "Swift"
+              ],
+              "frameworks": [
+                  "Android Studio", "React", "Next.js", "Tailwind CSS", "Node.js",
+                  "Express", "Vite", "Firebase", "Gradle", "SwiftUI", "Xcode"
+              ],
+              "tools-row11-20261123": [
+                  "MySQL", "SQLite", "Supabase", "Git", "GitHub", "VS Code",
+                  "Playwright", "Storybook", "Netlify", "MongoDB", "MariaDB"
+              ],
+              "databases-row2-20261123": ["SQL", "PL/SQL"],
+          }
+          # Programming languages first, then web technologies.
+          # IDEs first, then frameworks and other development tooling.
+          # Database languages, testing tools, then the remaining technologies.
+          target_order = {
+              "languages": [
+                  "Kotlin", "Java", "Python", "C", "C#", "Swift",
+                  "PHP", "JavaScript", "TypeScript", "HTML", "CSS"
+              ],
+              "frameworks": [
+                  "Android Studio", "Xcode", "React", "Next.js", "SwiftUI",
+                  "Tailwind CSS", "Node.js", "Express", "Vite", "Firebase", "Gradle"
+              ],
+              "tools": [
+                  "SQL", "PL/SQL", "Playwright", "Storybook",
+                  "MySQL", "SQLite", "MongoDB", "MariaDB", "Supabase", "Git", "GitHub"
+              ],
+              "databases": ["VS Code", "Netlify"]
+          }
+          all_original = [label for group in original_order.values() for label in group]
+          all_target = [label for group in target_order.values() for label in group]
+          if len(all_original) != 35 or len(set(all_original)) != 35:
+              raise RuntimeError("Original icon catalog is incomplete")
+          if sorted(all_target) != sorted(all_original):
+              raise RuntimeError("Reorder would add/remove/duplicate an icon")
+          
+          output_names = {
+              "languages": "languages-sorted-20261123",
+              "frameworks": "frameworks-sorted-20261123",
+              "tools": "tools-sorted-20261123",
+              "databases": "databases-sorted-20261123",
+          }
+          for theme in ("dark", "light"):
+              source_tiles = {}
+              for source_name, labels in original_order.items():
+                  source = folder / f"{source_name}-{theme}.png"
+                  with Image.open(source) as file_image:
+                      source_image = file_image.convert("RGBA")
+                  if source_image.size != (row_width, row_height):
+                      raise RuntimeError(f"Unexpected image size: {source} - {source_image.size}")
+                  for index, label in enumerate(labels):
+                      tile = source_image.crop((
+                          index * cell_width, 0,
+                          (index + 1) * cell_width, row_height
+                      ))
+                      if label in source_tiles:
+                          raise RuntimeError(f"Duplicate source icon: {label}")
+                      source_tiles[label] = tile
+
+              for group, labels in target_order.items():
+                  output = Image.new("RGBA", (row_width, row_height), (0, 0, 0, 0))
+                  for index, label in enumerate(labels):
+                      tile = source_tiles[label]
+                      output.paste(tile, (index * cell_width, 0))
+                      check_tile = output.crop((
+                          index * cell_width, 0,
+                          (index + 1) * cell_width, row_height
+                      ))
+                      if sha256(tile.tobytes()).digest() != sha256(check_tile.tobytes()).digest():
+                          raise RuntimeError(f"Source pixels changed in {group}: {label}")
+                      if ImageChops.difference(tile, check_tile).getbbox():
+                          raise RuntimeError(f"Pixel mismatch in {group}: {label}")
+                  if output.crop((len(labels)*cell_width,0,row_width,row_height)).getbbox():
+                      raise RuntimeError(f"Unexpected visible pixels after {group}")
+                  path = folder / f"{output_names[group]}-{theme}.png"
+                  if path.exists():
+                      raise RuntimeError(f"Image filename already exists: {path}")
+                  output.save(path, "PNG", optimize=True)
+                  with Image.open(path) as verification:
+                      verification.verify()
+                  print(f"VERIFIED {path}: {len(labels)} icons with exact original pixels")
+
+          readme_path = Path("README.md")
+          text = readme_path.read_text(encoding="utf-8")
+          refs = {
+              "languages": "languages",
+              "frameworks": "frameworks",
+              "tools": "tools-row11-20261123",
+              "databases": "databases-row2-20261123",
+          }
+          # Change paths and alt text only, not display width or the rest of
+          # the profile. New paths force GitHub to fetch fresh images.
+          for group, source in refs.items():
+              target = output_names[group]
+              for theme in ("dark", "light"):
+                  old_path = f"assets/tech-icons/{source}-{theme}.png"
+                  new_path = f"assets/tech-icons/{target}-{theme}.png"
+                  expected = 2 if theme == "light" else 1
+                  if text.count(old_path) != expected:
+                      raise RuntimeError(f"Missing or repeated README reference: {old_path}")
+                  text = text.replace(old_path, new_path)
+          
+          alt_updates = {
+              "Iconos y nombres: Kotlin, Java, Python, PHP, JavaScript, TypeScript, HTML, CSS, C, C# y Swift":
+              "Iconos y nombres: Kotlin, Java, Python, C, C#, Swift, PHP, JavaScript, TypeScript, HTML y CSS",
+              "Iconos y nombres: Android Studio, React, Next.js, Tailwind CSS, Node.js, Express, Vite, Firebase, Gradle, SwiftUI y Xcode":
+              "Iconos y nombres: Android Studio, Xcode, React, Next.js, SwiftUI, Tailwind CSS, Node.js, Express, Vite, Firebase y Gradle",
+              "Iconos y nombres: MySQL, SQLite, Supabase, Git, GitHub, VS Code, Playwright, Storybook, Netlify, MongoDB y MariaDB":
+              "Iconos y nombres: SQL, PL/SQL, Playwright, Storybook, MySQL, SQLite, MongoDB, MariaDB, Supabase, Git y GitHub",
+              "Iconos y nombres: SQL y PL/SQL":
+              "Iconos y nombres: VS Code y Netlify",
+          }
+          for previous, updated in alt_updates.items():
+              if text.count(previous) != 1:
+                  raise RuntimeError(f"Unexpected alt text: {previous}")
+              text = text.replace(previous, updated, 1)
+          if text.count('width="800"') != 4:
+              raise RuntimeError("The 800px display scale would change")
+          if text.count("<picture>") != 4:
+              raise RuntimeError("Four original technology rows required")
+          for must_stay in ("FitnessApp", "HorseApp", "SwiftUI", "Odoo", "Qiskit Hackathon"):
+              if must_stay not in text:
+                  raise RuntimeError(f"Unrelated README content missing: {must_stay}")
+          readme_path.write_text(text, encoding="utf-8")
+          PY
+      - name: Publish new images and remove temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md assets/tech-icons/*-sorted-20261123-*.png
+          git rm .github/workflows/order-profile-technologies-once.yml
+          git diff --cached --stat
+          git commit -m "Order technology icons by programming, IDE, database, and testing categories"
+          git push origin HEAD:main
