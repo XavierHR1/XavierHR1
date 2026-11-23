@@ -1,0 +1,304 @@
+name: Actualitzar llenguatges i web del README
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/actualitzar-llenguatges-web.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  actualitzar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout del repositori
+        uses: actions/checkout@v4
+
+      - name: Instal·lar dependències
+        run: |
+          python3 -m pip install --disable-pip-version-check pillow requests
+
+      - name: Generar noves files de llenguatges i web
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageDraw, ImageFont
+          import requests
+
+          root = Path("assets/tech-icons")
+          root.mkdir(parents=True, exist_ok=True)
+
+          # Configuració visual compatible amb la resta d'imatges
+          CELL_W = 182
+          ROW_W = 2002
+          ROW_H = 168
+          ICON_BOX_W = 104
+          ICON_BOX_H = 104
+          ICON_X = 39
+          ICON_Y = 8
+          LABEL_Y = 148
+
+          # Colors del text segons tema
+          THEME_TEXT = {
+              "dark": "#F0F6FC",
+              "light": "#1F2328",
+          }
+
+          # Colors per a les icones noves (XML / JSON / DOM)
+          TILE_BG = "#1F2A44"
+          TILE_TEXT = "#F0F6FC"
+
+          # Font de GitHub
+          FONT_URL = "https://raw.githubusercontent.com/github/mona-sans/main/fonts/ttf/MonaSans-Regular.ttf"
+          FONT_PATH = Path("/tmp/MonaSans-Regular.ttf")
+
+          r = requests.get(FONT_URL, timeout=30)
+          r.raise_for_status()
+          FONT_PATH.write_bytes(r.content)
+
+          label_font = ImageFont.truetype(str(FONT_PATH), 24)
+          icon_font = ImageFont.truetype(str(FONT_PATH), 28)
+
+          # Fonts una mica més petites per encabir millor paraules llargues
+          icon_font_small = ImageFont.truetype(str(FONT_PATH), 24)
+
+          # Fonts de suport per si algun fitxer no existeix
+          def load_image(path: Path):
+              if not path.exists():
+                  raise FileNotFoundError(f"No existeix la imatge font: {path}")
+              with Image.open(path) as im:
+                  return im.convert("RGBA")
+
+          def rounded_rectangle(draw, xy, radius, fill):
+              draw.rounded_rectangle(xy, radius=radius, fill=fill)
+
+          def make_custom_tile(short_text: str, label: str, theme: str):
+              """
+              Crea una cel·la completa de 182x168 amb:
+              - icona superior estil targeta
+              - text inferior coherent amb la resta
+              """
+              tile = Image.new("RGBA", (CELL_W, ROW_H), (0, 0, 0, 0))
+              draw = ImageDraw.Draw(tile)
+
+              # Caixa superior de la icona
+              x1 = ICON_X
+              y1 = ICON_Y
+              x2 = ICON_X + ICON_BOX_W
+              y2 = ICON_Y + ICON_BOX_H
+              rounded_rectangle(draw, (x1, y1, x2, y2), radius=18, fill=TILE_BG)
+
+              # Text gran dins la icona
+              big_font = icon_font_small if len(short_text) >= 4 else icon_font
+              draw.text(
+                  ((x1 + x2) / 2, (y1 + y2) / 2),
+                  short_text,
+                  font=big_font,
+                  fill=TILE_TEXT,
+                  anchor="mm"
+              )
+
+              # Etiqueta inferior
+              draw.text(
+                  (CELL_W / 2, LABEL_Y),
+                  label,
+                  font=label_font,
+                  fill=THEME_TEXT[theme],
+                  anchor="ms"
+              )
+              return tile
+
+          # Fonts existents:
+          # 1) Fila actual de programació:
+          #    Kotlin, Java, Python, C, C#, Swift, PHP, JavaScript, TypeScript
+          # 2) Fila actual web:
+          #    HTML, CSS
+          programming_sources = {
+              "dark": load_image(root / "languages-programming-20261123-dark.png"),
+              "light": load_image(root / "languages-programming-20261123-light.png"),
+          }
+          web_sources = {
+              "dark": load_image(root / "languages-web-20261123-dark.png"),
+              "light": load_image(root / "languages-web-20261123-light.png"),
+          }
+
+          # Validació bàsica
+          for theme in ("dark", "light"):
+              if programming_sources[theme].size != (ROW_W, ROW_H):
+                  raise ValueError(
+                      f"Mida inesperada a languages-programming-20261123-{theme}.png: {programming_sources[theme].size}"
+                  )
+              if web_sources[theme].size != (ROW_W, ROW_H):
+                  raise ValueError(
+                      f"Mida inesperada a languages-web-20261123-{theme}.png: {web_sources[theme].size}"
+                  )
+
+          # Ordre actual a languages-programming-20261123:
+          # 0 Kotlin
+          # 1 Java
+          # 2 Python
+          # 3 C
+          # 4 C#
+          # 5 Swift
+          # 6 PHP
+          # 7 JavaScript
+          # 8 TypeScript
+          #
+          # Ordre actual a languages-web-20261123:
+          # 0 HTML
+          # 1 CSS
+
+          programming_row = [
+              ("prog", 0, "Kotlin"),
+              ("prog", 1, "Java"),
+              ("prog", 2, "Python"),
+              ("prog", 3, "C"),
+              ("prog", 4, "C#"),
+              ("prog", 5, "Swift"),
+              ("prog", 6, "PHP"),
+              ("prog", 8, "TypeScript"),
+          ]
+
+          web_row = [
+              ("prog", 7, "JavaScript"),
+              ("web", 0, "HTML"),
+              ("web", 1, "CSS"),
+              ("custom", "XML", "XML"),
+              ("custom", "JSON", "JSON"),
+              ("custom", "DOM", "DOM"),
+          ]
+
+          def get_tile(source_img, index):
+              x1 = index * CELL_W
+              x2 = x1 + CELL_W
+              return source_img.crop((x1, 0, x2, ROW_H))
+
+          for theme in ("dark", "light"):
+              prog_src = programming_sources[theme]
+              web_src = web_sources[theme]
+
+              # ---------
+              # Fila 1: programació
+              # ---------
+              row1 = Image.new("RGBA", (ROW_W, ROW_H), (0, 0, 0, 0))
+              for i, item in enumerate(programming_row):
+                  origin, index, _label = item
+                  if origin != "prog":
+                      raise RuntimeError("La primera fila només hauria de reutilitzar icones existents.")
+                  tile = get_tile(prog_src, index)
+                  row1.paste(tile, (i * CELL_W, 0))
+
+              out1 = root / f"languages-programming-v2-20261123-{theme}.png"
+              row1.save(out1, format="PNG", optimize=True)
+
+              # ---------
+              # Fila 2: web
+              # ---------
+              row2 = Image.new("RGBA", (ROW_W, ROW_H), (0, 0, 0, 0))
+              for i, item in enumerate(web_row):
+                  source_type = item[0]
+
+                  if source_type == "prog":
+                      _, index, _label = item
+                      tile = get_tile(prog_src, index)
+                  elif source_type == "web":
+                      _, index, _label = item
+                      tile = get_tile(web_src, index)
+                  else:
+                      _, short_text, label = item
+                      tile = make_custom_tile(short_text, label, theme)
+
+                  row2.paste(tile, (i * CELL_W, 0))
+
+              out2 = root / f"languages-web-v2-20261123-{theme}.png"
+              row2.save(out2, format="PNG", optimize=True)
+
+              # Verificació bàsica
+              with Image.open(out1) as test1:
+                  test1.verify()
+              with Image.open(out2) as test2:
+                  test2.verify()
+
+              print(f"Generades correctament: {out1} i {out2}")
+
+          # ----------------------
+          # Actualitzar README
+          # ----------------------
+          readme_path = Path("README.md")
+          readme = readme_path.read_text(encoding="utf-8")
+
+          start_marker = "**Lenguajes de programación y web**"
+          end_marker = "**Desarrollo de aplicaciones y frameworks**"
+
+          start = readme.find(start_marker)
+          end = readme.find(end_marker)
+
+          if start == -1 or end == -1 or end <= start:
+              raise RuntimeError("No s'ha pogut localitzar correctament la secció de llenguatges al README.")
+
+          replacement = """**Lenguajes de programación y web**
+
+<p align="left">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/languages-programming-v2-20261123-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/languages-programming-v2-20261123-light.png">
+    <img src="assets/tech-icons/languages-programming-v2-20261123-light.png" alt="Iconos y nombres: Kotlin, Java, Python, C, C#, Swift, PHP y TypeScript" width="800">
+  </picture>
+</p>
+
+<p align="left">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/languages-web-v2-20261123-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/languages-web-v2-20261123-light.png">
+    <img src="assets/tech-icons/languages-web-v2-20261123-light.png" alt="Iconos y nombres: JavaScript, HTML, CSS, XML, JSON y DOM" width="800">
+  </picture>
+</p>
+
+"""
+
+          new_readme = readme[:start] + replacement + readme[end:]
+
+          # Validacions mínimes
+          required_strings = [
+              "assets/tech-icons/languages-programming-v2-20261123-dark.png",
+              "assets/tech-icons/languages-programming-v2-20261123-light.png",
+              "assets/tech-icons/languages-web-v2-20261123-dark.png",
+              "assets/tech-icons/languages-web-v2-20261123-light.png",
+              "JavaScript, HTML, CSS, XML, JSON y DOM",
+              "Kotlin, Java, Python, C, C#, Swift, PHP y TypeScript",
+          ]
+
+          for text in required_strings:
+              if text not in new_readme:
+                  raise RuntimeError(f"Falta una referència al README: {text}")
+
+          readme_path.write_text(new_readme, encoding="utf-8")
+          print("README actualitzat correctament.")
+          PY
+
+      - name: Fer commit i publicar
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add README.md
+          git add assets/tech-icons/languages-programming-v2-20261123-dark.png
+          git add assets/tech-icons/languages-programming-v2-20261123-light.png
+          git add assets/tech-icons/languages-web-v2-20261123-dark.png
+          git add assets/tech-icons/languages-web-v2-20261123-light.png
+
+          if git diff --cached --quiet; then
+            echo "No hi ha canvis per publicar."
+            exit 0
+          fi
+
+          git commit -m "Split programming and web rows and add XML JSON DOM icons"
+          git push origin HEAD:main
