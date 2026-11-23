@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  Aplicaciones móviles · Desarrollo web · Proyectos colaborativos
+  Desarrollo Android y Apple · Desarrollo web · Aplicaciones en tiempo real
 </p>
 
 <p align="center">
@@ -24,7 +24,15 @@
 
 ## 👨‍💻 Sobre mí
 
-Me interesa desarrollar aplicaciones móviles y web con **interfaces intuitivas**, una lógica sólida y una buena integración de datos. He trabajado en proyectos individuales y colaborativos que incluyen consumo de APIs, persistencia de datos, aplicaciones en tiempo real y pruebas automatizadas.
+Soy estudiante del **Grado Superior de Desarrollo de Aplicaciones Multiplataforma (DAM)**. Me interesa crear aplicaciones que combinen una interfaz cuidada, una lógica sólida y una buena gestión de los datos.
+
+- 📱 **Desarrollo Android:** aplicaciones con **Kotlin, Jetpack Compose, Material 3** e interfaces **XML**; integración con **Firebase Firestore**, consumo de APIs mediante **Retrofit y Gson**, carga de imágenes con **Coil** y persistencia local con **SharedPreferences**. También he trabajado con **Dart y Flutter** para desarrollo multiplataforma.
+- 🍎 **Desarrollo Apple:** programación con **Swift** y creación de interfaces con **SwiftUI** utilizando **Xcode**.
+- 🌐 **Desarrollo web:** proyectos con **HTML, CSS, JavaScript, TypeScript, React, Next.js, Tailwind CSS y Laravel (PHP)**.
+- 🔄 **Aplicaciones en tiempo real:** proyectos con **Node.js, Express, Socket.IO, Phaser y Vite**, incluyendo lógica de juego, salas multijugador y comunicación cliente-servidor.
+- 🗄️ **Programación y bases de datos:** conocimientos de **Java, Python y PHP**, y experiencia con **SQL, PL/SQL, MySQL, MariaDB, MongoDB y SQLite**.
+- 🧩 **ERP:** experiencia académica con **Odoo**, creando módulos propios en **Python** y adaptando módulos estándar del ERP.
+- 🤝 **Colaboración:** participación en proyectos de desarrollo de software y en iniciativas de la comunidad tecnológica.
 
 ## 🛠️ Tecnologías y herramientas
 
@@ -90,6 +98,26 @@ Me interesa desarrollar aplicaciones móviles y web con **interfaces intuitivas*
   </picture>
 </p>
 
+**Integración Android, pruebas y calidad**
+
+<p>
+  <img src="https://img.shields.io/badge/Retrofit-3DDC84?style=for-the-badge&logo=android&logoColor=white" alt="Retrofit">
+  <img src="https://img.shields.io/badge/Coil-2563EB?style=for-the-badge" alt="Coil">
+  <img src="https://img.shields.io/badge/Navigation%20Compose-4285F4?style=for-the-badge&logo=android&logoColor=white" alt="Jetpack Navigation Compose">
+  <img src="https://img.shields.io/badge/JUnit-25A162?style=for-the-badge&logo=junit5&logoColor=white" alt="JUnit">
+</p>
+
+**Desarrollo de videojuegos, tiempo real y ERP**
+
+<p>
+  <img src="https://img.shields.io/badge/Phaser-21305B?style=for-the-badge&logoColor=white" alt="Phaser">
+  <img src="https://img.shields.io/badge/Socket.IO-010101?style=for-the-badge&logo=socketdotio&logoColor=white" alt="Socket.IO">
+  <img src="https://img.shields.io/badge/Odoo-714B67?style=for-the-badge&logo=odoo&logoColor=white" alt="Odoo ERP">
+  <img src="https://img.shields.io/badge/Jetpack%20Compose-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white" alt="Jetpack Compose">
+</p>
+
+También he trabajado con **XML y .NET**, navegación con **Jetpack Navigation Compose**, gestión de estado con **ViewModel** y herramientas de pruebas y calidad como **JUnit, Vitest, Playwright, ESLint y Prettier**.
+
 ## 🚀 Proyectos públicos destacados
 
 | Proyecto | Qué he desarrollado | Tecnologías principales |
@@ -98,19 +126,29 @@ Me interesa desarrollar aplicaciones móviles y web con **interfaces intuitivas*
 | [**HorseApp**](https://github.com/XavierHR1/HorseApp) | Aplicación Android con un listado de caballos sincronizado en tiempo real mediante Cloud Firestore. | Kotlin · Jetpack Compose · Material 3 · Firebase Firestore |
 | [**Portafoli OpenCode**](https://github.com/XavierHR1/portafolis-opencode) | Portafolio interactivo con búsqueda y filtros para explorar proyectos. | Next.js · React · TypeScript · Tailwind CSS |
 | [**Portafolio web**](https://github.com/XavierHR1/XavierHR1.github.io) | Página personal modular y adaptable a distintos dispositivos, creada sin frameworks de frontend. | HTML · CSS · JavaScript |
+| [**BMI Jetpack Composer**](https://github.com/XavierHR1/BMI-Jetpack-Composer) | Aplicación Android para calcular el índice de masa corporal. | Kotlin · Jetpack Compose |
+| [**Frases de M. Rajoy**](https://github.com/XavierHR1/FrasesdeMRajoy) | Aplicación Android que muestra una frase aleatoria al pulsar un botón. | Kotlin · Android · XML |
 
 ## 🔧 Experiencia en proyectos colaborativos y privados
 
-También he participado en desarrollos cuyo código no es público:
+Además de los repositorios públicos, participo en otros desarrollos cuyo código no está disponible públicamente.
 
-- **Aplicaciones multijugador y en tiempo real:** comunicación cliente-servidor, sincronización de estado y persistencia con **TypeScript, Node.js, Socket.IO y SQLite**.
-- **Aplicaciones web colaborativas:** trabajo con **React, Next.js y Supabase**, en equipos que utilizan herramientas de componentes, validación y pruebas como **Storybook, Playwright y Vitest**.
+- **Aplicaciones multijugador y tiempo real:** desarrollo con **TypeScript, Phaser, Vite, Node.js, Express y Socket.IO**; trabajo con comunicación cliente-servidor, sincronización de estado, persistencia con **SQLite** y pruebas automatizadas con **Vitest**.
+- **Aplicaciones web colaborativas:** participación en entornos basados en **React, Next.js, Supabase, TanStack Query, Zod, React Hook Form, Radix UI y Framer Motion**, entre otras herramientas.
+- **Componentes, visualización y calidad:** experiencia en entornos que incorporan **Storybook, Playwright, Recharts, FullCalendar, Mapbox GL y MapLibre GL**.
+
+*Las tecnologías enumeradas reflejan herramientas presentes en proyectos en los que participo; su inclusión no implica especialización individual en todas ellas. No se divulga código ni información interna de repositorios privados.*
 
 ## 🧩 Odoo y personalización de ERP
 
-En proyectos académicos he creado **módulos de Odoo con Python** y personalizado módulos existentes para adaptarlos a nuevos requisitos.
+En el ámbito académico he trabajado con **Odoo**, desarrollando **módulos personalizados en Python** y modificando módulos predefinidos del ERP para adaptar su comportamiento a distintos requisitos.
 
 ## 🌍 Comunidad tecnológica
 
-He participado en la organización de la **[Qiskit Hackathon BCN](https://github.com/XavierHR1/Qiskit-Hackathon-BCN)** y en iniciativas universitarias de ingeniería y tecnología.
+He participado en la organización de la **[Qiskit Hackathon BCN](https://github.com/XavierHR1/Qiskit-Hackathon-BCN)**, dedicada a la computación cuántica, y en otras iniciativas universitarias relacionadas con la ingeniería y la tecnología.
 
+---
+
+<p align="center">
+  <strong>Aprendiendo, construyendo y mejorando con cada proyecto.</strong>
+</p>
