@@ -1,0 +1,230 @@
+name: Fix programming and web language icon rows (one-time)
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/fix-language-web-rows-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install image libraries
+        run: python3 -m pip install --disable-pip-version-check pillow cairosvg
+
+      - name: Download official-style XML and JSON icons and GitHub font
+        shell: bash
+        run: |
+          mkdir -p /tmp/tech-row
+          curl --fail --location --silent --show-error "https://raw.githubusercontent.com/github/mona-sans/main/fonts/static/otf/MonaSans-Regular.otf" -o /tmp/tech-row/MonaSans-Regular.otf
+          curl --fail --location --silent --show-error "https://raw.githubusercontent.com/syvixor/skills-icons/main/icons/xml.svg" -o /tmp/tech-row/xml.svg
+          curl --fail --location --silent --show-error "https://raw.githubusercontent.com/syvixor/skills-icons/main/icons/json.svg" -o /tmp/tech-row/json.svg
+          for file in MonaSans-Regular.otf xml.svg json.svg; do
+            test -s "/tmp/tech-row/$file"
+          done
+
+      - name: Generate image files preserving original icons
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from hashlib import sha256
+          from io import BytesIO
+          import cairosvg
+          from PIL import Image, ImageDraw, ImageFont
+
+          base = Path("assets/tech-icons")
+          source = Path("/tmp/tech-row")
+          CELL, WIDTH, HEIGHT = 182, 2002, 168
+          font = ImageFont.truetype(str(source / "MonaSans-Regular.otf"), 24)
+          program_order = [
+              "Kotlin", "Java", "Python", "C", "C#", "Swift",
+              "PHP", "TypeScript"
+          ]
+          web_order = [
+              "JavaScript", "HTML", "CSS", "XML", "JSON", "DOM"
+          ]
+          original_program_order = [
+              "Kotlin", "Java", "Python", "C", "C#", "Swift",
+              "PHP", "JavaScript", "TypeScript"
+          ]
+          original_web_order = ["HTML", "CSS"]
+
+          # DOM is a browser document tree, not a programming language.
+          # Its original icon uses a document hierarchy motif.
+          DOM_SVG = """
+          <svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+            <rect width="256" height="256" rx="40" fill="#182337"/>
+            <rect x="88" y="37" width="80" height="49" rx="12" fill="#328EE0"/>
+            <path d="M128 86 V127 M60 127 H196 M60 127 V153 M128 127 V153 M196 127 V153"
+                  stroke="#B5DEEB" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="32" y="153" width="56" height="50" rx="11" fill="#27C5A7"/>
+            <rect x="100" y="153" width="56" height="50" rx="11" fill="#F3C15B"/>
+            <rect x="168" y="153" width="56" height="50" rx="11" fill="#F17C91"/>
+          </svg>
+          """
+
+          def new_icon(svg_bytes):
+              raw = cairosvg.svg2png(
+                  bytestring=svg_bytes,
+                  output_width=104,
+                  output_height=104
+              )
+              with Image.open(BytesIO(raw)) as image:
+                  icon = image.convert("RGBA")
+              if icon.size != (104, 104) or not icon.getbbox():
+                  raise RuntimeError("Blank or invalid generated icon")
+              return icon
+
+          novel_icons = {
+              "XML": new_icon((source / "xml.svg").read_bytes()),
+              "JSON": new_icon((source / "json.svg").read_bytes()),
+              "DOM": new_icon(DOM_SVG.encode("utf-8")),
+          }
+
+          for theme, text_color in (
+              ("dark", "#f0f6fc"),
+              ("light", "#1f2328")
+          ):
+              source_files = (
+                  (base / f"languages-programming-20261123-{theme}.png",
+                   original_program_order),
+                  (base / f"languages-web-20261123-{theme}.png",
+                   original_web_order),
+              )
+              tiles = {}
+              for filename, names in source_files:
+                  with Image.open(filename) as image:
+                      original = image.convert("RGBA")
+                  if original.size != (WIDTH, HEIGHT):
+                      raise RuntimeError(
+                          f"Incorrect source dimensions in {filename}: {original.size}"
+                      )
+                  for index, name in enumerate(names):
+                      if name in tiles:
+                          raise RuntimeError(f"Duplicate original icon {name}")
+                      tile = original.crop((
+                          CELL * index, 0, CELL * (index + 1), HEIGHT
+                      ))
+                      if not tile.getbbox():
+                          raise RuntimeError(f"Empty original tile for {name}")
+                      tiles[name] = tile
+
+              if len(tiles) != 11:
+                  raise RuntimeError("Expected 11 original icons")
+
+              for name, icon in novel_icons.items():
+                  cell = Image.new("RGBA", (CELL, HEIGHT), (0, 0, 0, 0))
+                  cell.alpha_composite(icon, (39, 8))
+                  draw = ImageDraw.Draw(cell)
+                  draw.text(
+                      (CELL // 2, 148),
+                      name,
+                      fill=text_color,
+                      font=font,
+                      anchor="ms"
+                  )
+                  # Verify the chosen font and GitHub theme color render.
+                  expected = tuple(bytes.fromhex(text_color.lstrip("#")))
+                  label_pixels = cell.crop((0, 120, CELL, HEIGHT)).getdata()
+                  if not any(px[:3] == expected and px[3] == 255
+                             for px in label_pixels):
+                      raise RuntimeError(f"Label failed to render for {name}")
+                  tiles[name] = cell
+
+              for output_name, ordered in (
+                  ("languages-programming-v3-20261123", program_order),
+                  ("languages-web-v3-20261123", web_order)
+              ):
+                  out = base / f"{output_name}-{theme}.png"
+                  if out.exists():
+                      raise RuntimeError(f"Refusing to overwrite existing image: {out}")
+                  combined = Image.new(
+                      "RGBA", (WIDTH, HEIGHT), (0, 0, 0, 0)
+                  )
+                  for index, name in enumerate(ordered):
+                      original_tile = tiles[name]
+                      combined.paste(original_tile, (index * CELL, 0))
+                      copied_tile = combined.crop((
+                          index * CELL, 0, (index + 1) * CELL, HEIGHT
+                      ))
+                      if sha256(original_tile.tobytes()).digest() != sha256(copied_tile.tobytes()).digest():
+                          raise RuntimeError(f"Icon tile changed: {name}")
+                  if combined.crop((CELL * len(ordered), 0, WIDTH, HEIGHT)).getbbox():
+                      raise RuntimeError(f"Unexpected pixels after last icon: {output_name}")
+                  combined.save(out, "PNG", optimize=True)
+                  with Image.open(out) as check:
+                      check.verify()
+                  print(f"VERIFIED {out}: {len(ordered)} correctly ordered icons")
+
+          readme_path = Path("README.md")
+          readme = readme_path.read_text(encoding="utf-8")
+          start = readme.index("**Lenguajes de programación y web**")
+          end = readme.index("**Desarrollo de aplicaciones y frameworks**", start)
+          old_section = readme[start:end]
+          if old_section.count("<picture>") != 2:
+              raise RuntimeError("Existing README language layout has changed")
+          for old in ("languages-programming-20261123", "languages-web-20261123"):
+              if old not in old_section:
+                  raise RuntimeError(f"Missing expected source image references: {old}")
+
+          def picture(name, title):
+              return (
+                  '<p align="left">\n'
+                  '  <picture>\n'
+                  f'    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/{name}-dark.png">\n'
+                  f'    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/{name}-light.png">\n'
+                  f'    <img src="assets/tech-icons/{name}-light.png" alt="Iconos y nombres: {title}" width="800">\n'
+                  '  </picture>\n'
+                  '</p>'
+              )
+
+          updated_section = (
+              "**Lenguajes de programación y web**\n\n"
+              + picture(
+                  "languages-programming-v3-20261123",
+                  "Kotlin, Java, Python, C, C#, Swift, PHP y TypeScript"
+              ) + "\n\n"
+              + picture(
+                  "languages-web-v3-20261123",
+                  "JavaScript, HTML, CSS, XML, JSON y DOM"
+              ) + "\n\n"
+          )
+          updated_readme = readme[:start] + updated_section + readme[end:]
+          if updated_readme.count("<picture>") != 7:
+              raise RuntimeError("Other README picture rows were unexpectedly changed")
+          if updated_readme.count('width="800"') != 7:
+              raise RuntimeError("The 800px icon display width was changed")
+          if not all(x in updated_readme for x in (
+              "testing-v4-20261123", "tools-v4-20261123",
+              "databases-v2-20261123", "FitnessApp", "HorseApp", "SwiftUI", "Odoo"
+          )):
+              raise RuntimeError("Unrelated README content was unexpectedly lost")
+          readme_path.write_text(updated_readme, encoding="utf-8")
+          print("VERIFIED: README references four new themed images correctly")
+          PY
+
+      - name: Publish images, fix misplaced workflow, and delete one-time action
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add README.md
+          git add assets/tech-icons/languages-programming-v3-20261123-{dark,light}.png
+          git add assets/tech-icons/languages-web-v3-20261123-{dark,light}.png
+
+          if git ls-files --error-unmatch ".github/workflows/.github/workflows/actualitzar-llenguatges-web.yml" >/dev/null 2>&1; then
+            git rm ".github/workflows/.github/workflows/actualitzar-llenguatges-web.yml"
+          fi
+
+          git rm ".github/workflows/fix-language-web-rows-once.yml"
+          git diff --cached --stat
+          git commit -m "Fix web languages icons and correctly publish XML JSON DOM"
+          git push origin HEAD:main
