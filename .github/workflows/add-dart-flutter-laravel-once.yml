@@ -1,0 +1,219 @@
+name: Add Dart Flutter and Laravel to profile (one-time)
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/add-dart-flutter-laravel-once.yml
+
+permissions:
+  contents: write
+
+jobs:
+  update-profile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install image dependencies
+        run: python3 -m pip install --disable-pip-version-check pillow cairosvg
+
+      - name: Add theme-aware icons without altering existing artwork
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from hashlib import sha256
+          from io import BytesIO
+          from urllib.request import urlopen
+          import cairosvg
+          from PIL import Image, ImageDraw, ImageFont
+
+          root = Path("assets/tech-icons")
+          size = (2002, 168)
+          cell = 182
+          icon_size = 104
+
+          old_groups = {
+              "languages-programming-v3-20261123": [
+                  "Kotlin", "Java", "Python", "C", "C#", "Swift",
+                  "PHP", "TypeScript"
+              ],
+              "frameworks-v2-20261123": [
+                  "React", "Next.js", "SwiftUI", "Tailwind CSS", "Node.js",
+                  "Express", "Vite", "Firebase", "Gradle"
+              ],
+          }
+          new_groups = {
+              "languages-programming-dart-v4-20261123": [
+                  "Kotlin", "Java", "Python", "C", "C#", "Swift",
+                  "Dart", "PHP", "TypeScript"
+              ],
+              "frameworks-flutter-laravel-v3-20261123": [
+                  "React", "Next.js", "SwiftUI", "Flutter", "Laravel",
+                  "Tailwind CSS", "Node.js", "Express", "Vite", "Firebase", "Gradle"
+              ],
+          }
+          if not (
+              sorted(new_groups["languages-programming-dart-v4-20261123"])
+              == sorted(old_groups["languages-programming-v3-20261123"] + ["Dart"])
+          ):
+              raise RuntimeError("Unexpected Dart language arrangement")
+          if not (
+              sorted(new_groups["frameworks-flutter-laravel-v3-20261123"])
+              == sorted(old_groups["frameworks-v2-20261123"] + ["Flutter", "Laravel"])
+          ):
+              raise RuntimeError("Unexpected framework arrangement")
+
+          def download(url):
+              with urlopen(url, timeout=30) as stream:
+                  data = stream.read()
+              if not data:
+                  raise RuntimeError(f"Could not download {url}")
+              return data
+
+          font_data = download(
+              "https://raw.githubusercontent.com/github/mona-sans/"
+              "main/fonts/static/otf/MonaSans-Regular.otf"
+          )
+          font_file = Path("/tmp/MonaSans-Regular.otf")
+          font_file.write_bytes(font_data)
+          label_font = ImageFont.truetype(str(font_file), 24)
+
+          for theme, color, icon_theme in (
+              ("dark", "#f0f6fc", "Dark"),
+              ("light", "#1f2328", "Light"),
+          ):
+              existing = {}
+              for source_group, labels in old_groups.items():
+                  path = root / f"{source_group}-{theme}.png"
+                  with Image.open(path) as img:
+                      source = img.convert("RGBA")
+                  if source.size != size:
+                      raise RuntimeError(f"Unexpected image dimensions: {path}: {source.size}")
+                  for index, label in enumerate(labels):
+                      tile = source.crop((
+                          cell * index, 0, cell * (index + 1), size[1]
+                      ))
+                      if not tile.getbbox():
+                          raise RuntimeError(f"Missing source icon {label}: {path}")
+                      existing[label] = tile
+              if len(existing) != 17:
+                  raise RuntimeError("Wrong number of original icons")
+
+              for technology in ("Dart", "Flutter", "Laravel"):
+                  svg_bytes = download(
+                      "https://raw.githubusercontent.com/tandpfun/"
+                      f"skill-icons/main/icons/{technology}-{icon_theme}.svg"
+                  )
+                  icon_bytes = cairosvg.svg2png(
+                      bytestring=svg_bytes,
+                      output_width=icon_size,
+                      output_height=icon_size,
+                  )
+                  with Image.open(BytesIO(icon_bytes)) as img:
+                      icon = img.convert("RGBA")
+                  if icon.size != (icon_size, icon_size) or not icon.getbbox():
+                      raise RuntimeError(f"Invalid new icon: {technology}")
+
+                  tile = Image.new("RGBA", (cell, size[1]), (0, 0, 0, 0))
+                  tile.alpha_composite(icon, (39, 8))
+                  draw = ImageDraw.Draw(tile)
+                  draw.text(
+                      (cell // 2, 148), technology,
+                      font=label_font, fill=color, anchor="ms"
+                  )
+                  # Confirm caption has the correct GitHub theme color.
+                  target_rgb = tuple(bytes.fromhex(color[1:]))
+                  caption = tile.crop((0, 120, cell, size[1]))
+                  if not any(px[:3] == target_rgb and px[3] == 255
+                             for px in caption.getdata()):
+                      raise RuntimeError(f"Label color mismatch: {technology} {theme}")
+                  existing[technology] = tile
+
+              for new_group, labels in new_groups.items():
+                  destination = root / f"{new_group}-{theme}.png"
+                  if destination.exists():
+                      raise RuntimeError(f"Destination already exists: {destination}")
+                  output = Image.new("RGBA", size, (0, 0, 0, 0))
+                  for index, label in enumerate(labels):
+                      before = existing[label]
+                      output.paste(before, (index * cell, 0))
+                      after = output.crop((
+                          index * cell, 0, (index + 1) * cell, size[1]
+                      ))
+                      if sha256(before.tobytes()).digest() != sha256(after.tobytes()).digest():
+                          raise RuntimeError(f"Original pixels changed for {label}")
+                  if output.crop((len(labels) * cell, 0, size[0], size[1])).getbbox():
+                      raise RuntimeError("Pixels outside icon cells")
+                  output.save(destination, "PNG", optimize=True)
+                  with Image.open(destination) as verify:
+                      verify.verify()
+                  print(f"VERIFIED {destination}: {len(labels)} icons, original artwork preserved")
+
+          readme_file = Path("README.md")
+          content = readme_file.read_text(encoding="utf-8")
+          replacements = {
+              "languages-programming-v3-20261123":
+                  "languages-programming-dart-v4-20261123",
+              "frameworks-v2-20261123":
+                  "frameworks-flutter-laravel-v3-20261123",
+              "Iconos y nombres: Kotlin, Java, Python, C, C#, Swift, PHP y TypeScript":
+                  "Iconos y nombres: Kotlin, Java, Python, C, C#, Swift, Dart, PHP y TypeScript",
+              "Iconos y nombres: React, Next.js, SwiftUI, Tailwind CSS, Node.js, Express, Vite, Firebase y Gradle":
+                  "Iconos y nombres: React, Next.js, SwiftUI, Flutter, Laravel, Tailwind CSS, Node.js, Express, Vite, Firebase y Gradle",
+          }
+          for old, new in replacements.items():
+              expected_count = 3 if old in old_groups else 1
+              if content.count(old) != expected_count:
+                  raise RuntimeError(f"README changed; expected {expected_count} references for {old}")
+              content = content.replace(old, new)
+
+          # Add concise factual context to the profile introduction.
+          android_intro = "- 📱 **Desarrollo Android:**"
+          web_intro = "- 🌐 **Desarrollo web:**"
+          lines = content.splitlines(keepends=True)
+          android_count = web_count = 0
+          for i, line in enumerate(lines):
+              if line.startswith(android_intro):
+                  if not line.rstrip().endswith("**SharedPreferences**."):
+                      raise RuntimeError("The mobile-development bio has changed")
+                  lines[i] = line.rstrip("\n") + " También he trabajado con **Dart y Flutter** para desarrollo multiplataforma.\n"
+                  android_count += 1
+              elif line.startswith(web_intro):
+                  old_text = "React, Next.js y Tailwind CSS**."
+                  if line.count(old_text) != 1:
+                      raise RuntimeError("The web-development bio has changed")
+                  lines[i] = line.replace(
+                      old_text,
+                      "React, Next.js, Tailwind CSS y Laravel (PHP)**.",
+                  )
+                  web_count += 1
+          if (android_count, web_count) != (1, 1):
+              raise RuntimeError("Expected exactly one mobile and one web bio")
+          content = "".join(lines)
+
+          # No modifications to section layout, image display width or other projects.
+          if content.count("<picture>") != 7 or content.count('width="800"') != 7:
+              raise RuntimeError("The existing seven 800px icon rows changed")
+          for original in ("languages-web-v3-20261123", "ides-v2-20261123",
+                           "databases-v2-20261123", "testing-v4-20261123",
+                           "tools-v4-20261123", "FitnessApp", "HorseApp", "Odoo"):
+              if original not in content:
+                  raise RuntimeError(f"Unrelated README content missing: {original}")
+          readme_file.write_text(content, encoding="utf-8")
+          print("VERIFIED README: Dart, Flutter and Laravel added, unchanged sections retained")
+          PY
+
+      - name: Publish PNG files and remove this one-time workflow
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git add assets/tech-icons/languages-programming-dart-v4-20261123-{dark,light}.png
+          git add assets/tech-icons/frameworks-flutter-laravel-v3-20261123-{dark,light}.png
+          git rm .github/workflows/add-dart-flutter-laravel-once.yml
+          git diff --cached --stat
+          git commit -m "Add Dart Flutter and Laravel technologies to profile README"
+          git push origin HEAD:main
