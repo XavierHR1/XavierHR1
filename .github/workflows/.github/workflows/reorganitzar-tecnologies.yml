@@ -1,0 +1,257 @@
+
+name: Reorganitzar tecnologies del README
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/reorganitzar-tecnologies.yml
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  reorganitzar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descarregar el repositori
+        uses: actions/checkout@v4
+
+      - name: Instal·lar Pillow
+        run: python3 -m pip install Pillow
+
+      - name: Generar les files de proves i altres eines
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+
+          carpeta = Path("assets/tech-icons")
+
+          # Les imatges originals contenen cinc icones
+          # en aquest ordre:
+          # Playwright, Storybook, Git, GitHub i Netlify.
+          #
+          # Copiem les cel·les completes per conservar
+          # els dibuixos, els textos i els colors originals.
+
+          amplada_cella = 182
+          amplada_total = 2002
+          alcada = 168
+
+          grups = {
+              "testing-v3-20261123": [0, 1],
+              "tools-v3-20261123": [2, 3, 4]
+          }
+
+          for tema in ("dark", "light"):
+
+              origen = carpeta / (
+                  f"tools-v2-20261123-{tema}.png"
+              )
+
+              if not origen.exists():
+                  raise FileNotFoundError(
+                      f"No existeix: {origen}"
+                  )
+
+              with Image.open(origen) as imatge:
+                  original = imatge.convert("RGBA")
+
+              if original.size != (
+                  amplada_total, alcada
+              ):
+                  raise ValueError(
+                      f"Mida inesperada: {original.size}"
+                  )
+
+              for nom, posicions in grups.items():
+
+                  # Conservem l'amplada de referència
+                  # per mantenir l'escala visual de 800 px.
+                  resultat = Image.new(
+                      "RGBA",
+                      (amplada_total, alcada),
+                      (0, 0, 0, 0)
+                  )
+
+                  for desti, origen_index in enumerate(
+                      posicions
+                  ):
+                      x = origen_index * amplada_cella
+
+                      celda = original.crop((
+                          x,
+                          0,
+                          x + amplada_cella,
+                          alcada
+                      ))
+
+                      # Reutilitzem els píxels exactes,
+                      # sense regenerar cap icona o text.
+                      resultat.paste(
+                          celda,
+                          (desti * amplada_cella, 0)
+                      )
+
+                      comprovacio = resultat.crop((
+                          desti * amplada_cella,
+                          0,
+                          (desti + 1) * amplada_cella,
+                          alcada
+                      ))
+
+                      if (
+                          comprovacio.tobytes()
+                          != celda.tobytes()
+                      ):
+                          raise RuntimeError(
+                              "Una icona ha canviat."
+                          )
+
+                  sortida = carpeta / f"{nom}-{tema}.png"
+
+                  resultat.save(
+                      sortida,
+                      format="PNG",
+                      optimize=True
+                  )
+
+                  with Image.open(sortida) as verificar:
+                      verificar.verify()
+
+                  print(f"Generat i verificat: {sortida}")
+
+          print("Les quatre imatges s'han generat.")
+          PY
+
+      - name: Actualitzar i verificar el README
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          fitxer = Path("README.md")
+          contingut = fitxer.read_text(
+              encoding="utf-8"
+          )
+
+          def bloc_imatge(nom, descripcio):
+              return (
+                  '<p align="left">\n'
+                  '  <picture>\n'
+                  '    <source media="(prefers-color-scheme: dark)" '
+                  f'srcset="assets/tech-icons/{nom}-dark.png">\n'
+                  '    <source media="(prefers-color-scheme: light)" '
+                  f'srcset="assets/tech-icons/{nom}-light.png">\n'
+                  f'    <img src="assets/tech-icons/{nom}-light.png" '
+                  f'alt="{descripcio}" width="800">\n'
+                  '  </picture>\n'
+                  '</p>'
+              )
+
+          proves = bloc_imatge(
+              "testing-v3-20261123",
+              "Iconos y nombres: Playwright y Storybook"
+          )
+
+          eines = bloc_imatge(
+              "tools-v3-20261123",
+              "Iconos y nombres: Git, GitHub y Netlify"
+          )
+
+          # Si el README encara té l'antiga fila,
+          # la substituïm per les dues files noves.
+          blocs = list(re.finditer(
+              r'<p align="left">\s*<picture>'
+              r'.*?</picture>\s*</p>',
+              contingut,
+              flags=re.DOTALL
+          ))
+
+          antics = [
+              bloc for bloc in blocs
+              if "tools-v2-20261123" in bloc.group(0)
+          ]
+
+          if len(antics) == 1:
+              antic = antics[0]
+
+              contingut = (
+                  contingut[:antic.start()]
+                  + proves + "\n\n" + eines
+                  + contingut[antic.end():]
+              )
+
+          elif len(antics) > 1:
+              raise RuntimeError(
+                  "Hi ha diverses files antigues."
+              )
+
+          # Comprovem les tres files definitives.
+          requerits = (
+              "databases-v2-20261123",
+              "testing-v3-20261123",
+              "tools-v3-20261123"
+          )
+
+          for nom in requerits:
+              for tema in ("dark", "light"):
+                  ruta = (
+                      f"assets/tech-icons/{nom}-{tema}.png"
+                  )
+
+                  if ruta not in contingut:
+                      raise RuntimeError(
+                          f"Falta al README: {ruta}"
+                      )
+
+                  if not Path(ruta).exists():
+                      raise FileNotFoundError(ruta)
+
+          for seccio in (
+              "FitnessApp",
+              "HorseApp",
+              "SwiftUI",
+              "Odoo"
+          ):
+              if seccio not in contingut:
+                  raise RuntimeError(
+                      f"Falta una secció: {seccio}"
+                  )
+
+          fitxer.write_text(
+              contingut,
+              encoding="utf-8"
+          )
+
+          print("README comprovat correctament.")
+          PY
+
+      - name: Publicar canvis
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add README.md
+          git add assets/tech-icons/testing-v3-20261123-*.png
+          git add assets/tech-icons/tools-v3-20261123-*.png
+
+          # És un procés d'un sol ús.
+          # Eliminem el workflow després d'executar-lo.
+          git rm .github/workflows/reorganitzar-tecnologies.yml
+
+          git diff --cached --stat
+
+          git commit -m \
+            "Organize database, testing and tools icons into three rows"
+
+          git push origin HEAD:main
