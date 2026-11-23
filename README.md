@@ -40,17 +40,17 @@ Soy estudiante del **Grado Superior de Desarrollo de Aplicaciones Multiplataform
 
 <p align="left">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/languages-programming-20261123-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/languages-programming-20261123-light.png">
-    <img src="assets/tech-icons/languages-programming-20261123-light.png" alt="Iconos y nombres: Kotlin, Java, Python, C, C#, Swift, PHP, JavaScript y TypeScript" width="800">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/languages-programming-v3-20261123-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/languages-programming-v3-20261123-light.png">
+    <img src="assets/tech-icons/languages-programming-v3-20261123-light.png" alt="Iconos y nombres: Kotlin, Java, Python, C, C#, Swift, PHP y TypeScript" width="800">
   </picture>
 </p>
 
 <p align="left">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/languages-web-20261123-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/languages-web-20261123-light.png">
-    <img src="assets/tech-icons/languages-web-20261123-light.png" alt="Iconos y nombres: HTML y CSS" width="800">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/languages-web-v3-20261123-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/languages-web-v3-20261123-light.png">
+    <img src="assets/tech-icons/languages-web-v3-20261123-light.png" alt="Iconos y nombres: JavaScript, HTML, CSS, XML, JSON y DOM" width="800">
   </picture>
 </p>
 
