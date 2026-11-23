@@ -124,8 +124,6 @@ También he trabajado con **XML y .NET**, navegación con **Jetpack Navigation C
 | --- | --- | --- |
 | [**FitnessApp**](https://github.com/XavierHR1/FitnessApp) | Aplicación Android para consultar ejercicios desde una API, registrar el peso, calcular el IMC y gestionar un perfil local. | Kotlin · Jetpack Compose · Retrofit · Coil · SharedPreferences · JUnit |
 | [**HorseApp**](https://github.com/XavierHR1/HorseApp) | Aplicación Android con un listado de caballos sincronizado en tiempo real mediante Cloud Firestore. | Kotlin · Jetpack Compose · Material 3 · Firebase Firestore |
-| [**Portafoli OpenCode**](https://github.com/XavierHR1/portafolis-opencode) | Portafolio interactivo con búsqueda y filtros para explorar proyectos. | Next.js · React · TypeScript · Tailwind CSS |
-| [**Portafolio web**](https://github.com/XavierHR1/XavierHR1.github.io) | Página personal modular y adaptable a distintos dispositivos, creada sin frameworks de frontend. | HTML · CSS · JavaScript |
 | [**BMI Jetpack Composer**](https://github.com/XavierHR1/BMI-Jetpack-Composer) | Aplicación Android para calcular el índice de masa corporal. | Kotlin · Jetpack Compose |
 | [**Frases de M. Rajoy**](https://github.com/XavierHR1/FrasesdeMRajoy) | Aplicación Android que muestra una frase aleatoria al pulsar un botón. | Kotlin · Android · XML |
 
