@@ -31,6 +31,7 @@ Soy estudiante del **Grado Superior de Desarrollo de Aplicaciones Multiplataform
 - 🌐 **Desarrollo web:** proyectos con **HTML, CSS, JavaScript, TypeScript, React, Next.js, Tailwind CSS y Laravel (PHP)**.
 - 🔄 **Aplicaciones en tiempo real:** proyectos con **Node.js, Express, Socket.IO, Phaser y Vite**, incluyendo lógica de juego, salas multijugador y comunicación cliente-servidor.
 - 🗄️ **Programación y bases de datos:** conocimientos de **Java, Python y PHP**, y experiencia con **SQL, PL/SQL, MySQL, MariaDB, MongoDB y SQLite**.
+- 🐧 **Linux (nivel académico):** uso de la terminal, gestión de archivos y permisos, instalación de paquetes y configuración básica de servicios.
 - 🧩 **ERP:** experiencia académica con **Odoo**, creando módulos propios en **Python** y adaptando módulos estándar del ERP.
 - 🤝 **Colaboración:** participación en proyectos de desarrollo de software y en iniciativas de la comunidad tecnológica.
 
