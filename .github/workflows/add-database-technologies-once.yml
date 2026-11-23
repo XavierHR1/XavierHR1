@@ -80,20 +80,20 @@ jobs:
               raise RuntimeError("Database bio section changed unexpectedly")
           text = text.replace(old_bio, new_bio, 1)
 
-          old_section = '''    <img src="assets/tech-icons/tools-light.png" alt="Iconos y nombres: MySQL, SQLite, Supabase, Git, GitHub, VS Code, Playwright, Storybook y Netlify" width="819">
-  </picture>
-</p>'''
-          added = '''    <img src="assets/tech-icons/tools-light.png" alt="Iconos y nombres: MySQL, SQLite, Supabase, Git, GitHub, VS Code, Playwright, Storybook y Netlify" width="819">
-  </picture>
-</p>
-
-<p align="left">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/databases-extra-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/databases-extra-light.png">
-    <img src="assets/tech-icons/databases-extra-light.png" alt="Iconos y nombres: SQL, PL/SQL, MongoDB y MariaDB" width="364">
-  </picture>
-</p>'''
+          old_section = (
+              '    <img src="assets/tech-icons/tools-light.png" alt="Iconos y nombres: MySQL, SQLite, Supabase, Git, GitHub, VS Code, Playwright, Storybook y Netlify" width="819">\n'
+              '  </picture>\n'
+              '</p>'
+          )
+          added = old_section + (
+              '\n\n<p align="left">\n'
+              '  <picture>\n'
+              '    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/databases-extra-dark.png">\n'
+              '    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/databases-extra-light.png">\n'
+              '    <img src="assets/tech-icons/databases-extra-light.png" alt="Iconos y nombres: SQL, PL/SQL, MongoDB y MariaDB" width="364">\n'
+              '  </picture>\n'
+              '</p>'
+          )
           if text.count(old_section) != 1:
               raise RuntimeError("The existing database icon row changed unexpectedly")
           text = text.replace(old_section, added, 1)
