@@ -76,17 +76,17 @@ Soy estudiante del **Grado Superior de Desarrollo de Aplicaciones Multiplataform
 
 <p align="left">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/testing-v3-20261123-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/testing-v3-20261123-light.png">
-    <img src="assets/tech-icons/testing-v3-20261123-light.png" alt="Iconos y nombres: Playwright y Storybook" width="800">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/testing-v4-20261123-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/testing-v4-20261123-light.png">
+    <img src="assets/tech-icons/testing-v4-20261123-light.png" alt="Iconos y nombres: Playwright y Storybook" width="800">
   </picture>
 </p>
 
 <p align="left">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/tools-v3-20261123-dark.png">
-    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/tools-v3-20261123-light.png">
-    <img src="assets/tech-icons/tools-v3-20261123-light.png" alt="Iconos y nombres: Git, GitHub y Netlify" width="800">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/tech-icons/tools-v4-20261123-dark.png">
+    <source media="(prefers-color-scheme: light)" srcset="assets/tech-icons/tools-v4-20261123-light.png">
+    <img src="assets/tech-icons/tools-v4-20261123-light.png" alt="Iconos y nombres: Git, GitHub y Netlify" width="800">
   </picture>
 </p>
 
